@@ -18,7 +18,6 @@ public class T19 {
     	if(totalLen==n){
     		return head.next;
     	}
-    	
     	temp  = head;
     	
     	for(int i =0;i<totalLen-n-1;i++){
