@@ -2,9 +2,14 @@ package T_401_500;
 
 public class T494 {
 	
+//	a-b=S
+//	a+b=sum
+//	-->a=(S+sum)/2
+//	取子集和为(S+sum)/2
+//	dp来做
     public int findTargetSumWays(int[] nums, int S) {
         int sum = 0;
-        for (int num : nums) {
+        for (int num : nums) {//求和
             sum += num;
         }
         if (sum < S || (sum + S) % 2 == 1) {
