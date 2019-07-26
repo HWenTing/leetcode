@@ -2,44 +2,20 @@ package T_1_100;
 
 public class T21 {
 
+//	递归 解决归并有序数组 很优雅
     public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-
-    	if(l1==null){
+    	if(l1==null)
     		return l2;
-    	}else if(l2==null){
+    	if(l2==null)
+    		return l1;
+    	
+    	if(l1.val<l2.val){
+    		l1.next=mergeTwoLists(l1.next,l2);
     		return l1;
     	}else{
-    		ListNode ans;
-    		if(l1.val>l2.val){
-    			ans =new ListNode(l2.val); 
-    			l2 = l2.next;
-    		}else{
-    			ans =new ListNode(l1.val); 
-    			l1 = l1.next;
-    		}
-    		
-    		ListNode temp = ans;
-    		while(l1!=null && l2!=null){
-        		if(l1.val>l2.val){
-        			ans.next =new ListNode(l2.val); 
-        			ans  =ans.next;
-        			l2 = l2.next;
-        		}else{
-        			ans.next =new ListNode(l1.val); 
-        			ans  =ans.next;
-        			l1 = l1.next;
-        		}	
-	        }
-    		
-    		if(l1==null){
-    			ans.next=l2;
-    		}else{
-    			ans.next = l1;
-    		}
-
-    		return temp;
+    		l2.next=mergeTwoLists(l1,l2.next);
+    		return l2;
     	}
-
     }
     
     public static void main(String[] args){

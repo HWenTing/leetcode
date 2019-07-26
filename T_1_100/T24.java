@@ -2,35 +2,22 @@ package T_1_100;
 
 public class T24 {
 
-    public static ListNode swapPairs(ListNode head) {
+//	交换相邻节点
+//	递归来解决，每次交换两个，递归进行
+    public  ListNode swapPairs(ListNode head) {
     	if (head==null||head.next==null){
     		return head;
     	}
     	
-    	ListNode anshead ,l1,l2,temp;
-    	
-    	anshead = head.next;
-    	head.next = head.next.next;
-    	anshead.next = head;
+    	ListNode nextnext = head.next.next;
+    	ListNode temp = head;
+    	head = head.next;
+    	head.next = temp;
+    	temp.next = swapPairs(nextnext);
+    	return head;
 
-    	temp = head;
-    	l2=head.next;
-    	try{
-	    	while(l2!=null){
-	    		System.out.println(temp.val);
-	    		System.out.println(l2.val);
-	    		temp.next = l2.next;
-	    		l2.next = l2.next.next;
-	    		temp.next.next = l2;
-	    		temp =  temp.next.next;
-	    		l2 = l2.next;
-
-	    	}
-    	}catch(Exception e){
-    		temp.next=l2;
-    	}
-    	return anshead;
     }
+    
     
     public static void main(String[] args){
     	ListNode list1  = new ListNode(1);
@@ -39,8 +26,8 @@ public class T24 {
     	list1.next.next.next = new ListNode(4);
     	list1.next.next.next.next = new ListNode(5);
 
-    	
-    	ListNode ans = swapPairs(list1);
+    	T24 t =new T24();
+    	ListNode ans = t.swapPairs(list1);
     	while(ans.next!=null){
     		System.out.print(ans.val+"--->");
     		ans = ans.next;
