@@ -9,33 +9,39 @@ class TreeNode {
 }
 
 public class T543 {
+	
+//	第一次做，似乎递归的有点麻烦。。。击败17%
 //	递归咯，
-	public static int diameterOfBinaryTree(TreeNode root) {
-		if(root!=null){
-			return Math.max(dis(root.left)+dis(root.right), Math.max(diameterOfBinaryTree(root.right),diameterOfBinaryTree(root.left)));			
-		}
-		return 0;
-    }
-	public static int dis(TreeNode root){
-		if(root!=null){
-			return Math.max(dis(root.left)+1, dis(root.right)+1);			
-		}
-		return 0;
+//	public static int diameterOfBinaryTree(TreeNode root) {
+//		if(root!=null){
+//			return Math.max(dis(root.left)+dis(root.right), Math.max(diameterOfBinaryTree(root.right),diameterOfBinaryTree(root.left)));			
+//		}
+//		return 0;
+//    }
+//	public static int dis(TreeNode root){
+//		if(root!=null){
+//			return Math.max(dis(root.left)+1, dis(root.right)+1);			
+//		}
+//		return 0;
+//	}
+	
+	
+//	改进递归方式，类似T110，增加全局变量 击败82%
+	
+	private int max=0;
+	public  int diameterOfBinaryTree(TreeNode root) {
+		maxDepth(root);
+		return max;
 	}
-	public static void main(String [] args){
-    	TreeNode s = new TreeNode(1);
-
+	
+    public int maxDepth(TreeNode root) {
+    	if(root ==null)
+    		return 0;
     	
-    	TreeNode temp1 = new TreeNode(2);
-    	s.left = temp1;
-    	TreeNode temp2 = new TreeNode(3);
-    	s.right = temp2;
-    	TreeNode temp3 = new TreeNode(4);
-    	temp1.left =  temp3;
-    	TreeNode temp4 = new TreeNode(5);
-    	temp1.right =  temp4;
-
-    	
-		System.out.println(diameterOfBinaryTree(s));
-	 }
+    	int l = maxDepth(root.left);
+    	int r = maxDepth(root.right);
+    	if(l+r>max)
+    		max = l+r;
+    	return Math.max(l, r)+1;
+    }
 }

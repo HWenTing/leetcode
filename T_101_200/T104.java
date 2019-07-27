@@ -5,22 +5,15 @@ class TreeNode {
     TreeNode right;
     TreeNode(int x) { val = x; }
 }
+
+
 public class T104 {
-	int max=0;
-    int length=0;
-    private void hasnext(TreeNode root){
-        if(root != null){
-            length++;
-            if(max<length){
-                max = length;
-            }
-            hasnext(root.left);
-            hasnext(root.right);
-            length--;
-        }        
-    }
+
+//	求树的最大高度 
+//	直接递归 左子树右子树较大值+1
     public int maxDepth(TreeNode root) {
-        hasnext(root);
-        return max;
+    	if(root ==null)
+    		return 0;
+    	return Math.max(maxDepth(root.left), maxDepth(root.right))+1;
     }
 }
