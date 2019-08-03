@@ -1,6 +1,12 @@
-class T687 {
+package T_601_700;
+
+
+public class T687 {
     
-    // 
+    // 递归调用，要把递归的起始部分分开
+//	第一次交 有很多重复计算的步骤
+//	第二次通过每个节点只算了一次
+	
     public int longestUnivaluePath(TreeNode root) {
         if(root==null)
             return 0;
