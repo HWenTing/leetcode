@@ -25,6 +25,8 @@ leetcode题解
 
 * 求至少出现n/2次的数，摩尔投票法，同加异减
 
+* 求至少出现n/3次的数，也可以摩尔投票法，T229
+
 * 平方数可以用加法来求 ，相邻平方数间隔为3,5,7,
 
 * 整数范围 三数之积，最大值取max（max1\*max2\*max3，min1\*min2\*max1）
@@ -73,8 +75,13 @@ leetcode题解
 
 * 适合解决下一个更大的元素问题（739、496、503）
 
+#### 关于哈希表的一些想法
+
+*  hashmap有时候也是不错的选择 。 HashMap<Integer, Integer> hasMap = new HashMap<Integer, Integer>();空间换时间
+
 #### 其他想法
-*  hashmap有时候也是不错的选择 。 HashMap<Integer, Integer> hasMap = new HashMap<Integer, Integer>();
+
+
 
 
 
