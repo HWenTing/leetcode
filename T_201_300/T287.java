@@ -11,11 +11,32 @@ public class T287 {
 //	数组中只有一个重复的数字，但它可能不止重复出现一次。
 	
 	
-//	没想出来好法子。。 看了题解 二分法，双指针
+//	没想出来好法子。。 看了题解双指针
 	
-//    public int findDuplicate(int[] nums) {
-//        
-//    }
+	
+//	双指针，把数组里的值当成下一个元素的下标
+//	击败99.8%
+//	按照循环链表找第一个节点的方法做就可以
+    public int findDuplicate(int[] nums) {
+    	//从0位算起
+    	int slow = nums[0];//指在第一位
+    	int fast = nums[nums[0]];//指在第2位
+    	while(slow!=fast){
+        	slow = nums[slow];//每次走一步
+        	fast = nums[nums[fast]];//每次走两步
+    	}
+    
+    	slow =0;//复位
+    	int before1=0;//记录slow的前边一个元素
+    	int before2=0;//记录fast前边一个元素
+    	while(slow!=fast || before1!=before2 ){//当fast==slow并且它们的父节点的值相同时才停止
+    		before1 = slow;
+    		before2 = fast;
+    		slow =  nums[slow];
+    		fast =  nums[fast];
+    	}
+    	return before1;	
+    }
     
 	
 	
