@@ -102,6 +102,8 @@ leetcode题解
 
 * 拓扑排序，用一个队列存储入度为0的节点较为方便
 
+* 并查集
+
 #### 其他想法
 
 * Comparable 这个interface 很好用，如 class Tuple implements Comparable<Tuple> {}（T378）
