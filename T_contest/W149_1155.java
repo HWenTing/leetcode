@@ -6,7 +6,7 @@ public class W149_1155 {
 //	动态规划，前f个的和
 //	10^9 + 7
     public int numRollsToTarget(int d, int f, int target) {
-        if(d*f<target ||target<d)
+        if(d*f<target ||target<d )
         	return 0;
         
         int[] dp = new int[target];
