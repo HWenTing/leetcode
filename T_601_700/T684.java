@@ -3,7 +3,7 @@ package T_601_700;
 public class T684 {
 
 //	并查集解决
-//	击败100%   哈哈哈
+//	击败100%  哈哈哈
 	int[] root;
     public int[] findRedundantConnection(int[][] edges) {
         int len = edges.length;
