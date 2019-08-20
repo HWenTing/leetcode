@@ -60,7 +60,7 @@ public class T438 {
 //    		cnt[p.charAt(pos)-'a']--;
 //    		cnt[s.charAt(pos)-'a']++;
 //    	}
-//    	for(;pos<lens;pos++){//从lenp位开始，启动滑动窗口思想
+//    	for(;pos<lens;pos++){//从lenp位开始，启动滑动窗口思想，固定窗口大小
 //    		if(check(cnt))
 //    			ans.add(pos-lenp);
 //    		
@@ -108,6 +108,5 @@ public class T438 {
 //		if(hashmap.get(c)==0)
 //			hashmap.remove(c);
 //	}
-	
 	
 }
