@@ -4,44 +4,60 @@ import java.util.HashMap;
 
 public class T36 {
 
-	public boolean isValidSudoku(char[][] board) {
-	    // init data
-	    HashMap<Integer, Integer> [] rows = new HashMap[9];
-	    HashMap<Integer, Integer> [] columns = new HashMap[9];
-	    HashMap<Integer, Integer> [] boxes = new HashMap[9];
-	    for (int i = 0; i < 9; i++) {
-	      rows[i] = new HashMap<Integer, Integer>();
-	      columns[i] = new HashMap<Integer, Integer>();
-	      boxes[i] = new HashMap<Integer, Integer>();
-	    }
-
-	    // validate a board
-	    for (int i = 0; i < 9; i++) {
-	      for (int j = 0; j < 9; j++) {
-	        char num = board[i][j];
-	        if (num != '.') {
-	          int n = (int)num;
-	          int box_index = (i / 3 ) * 3 + j / 3;
-
-	          // keep the current cell value
-	          rows[i].put(n, rows[i].getOrDefault(n, 0) + 1);
-	          columns[j].put(n, columns[j].getOrDefault(n, 0) + 1);
-	          boxes[box_index].put(n, boxes[box_index].getOrDefault(n, 0) + 1);
-
-	          // check if this value has been already seen before
-	          if (rows[i].get(n) > 1 || columns[j].get(n) > 1 || boxes[box_index].get(n) > 1)
-	            return false;
-	        }
-	      }
-	    }
-
-	    return true;
-	  }
+//	用hash记录出现过的元素 
+//	击败55%，换为数组优化
+//	public boolean isValidSudoku(char[][] board) {
+//	    HashMap<Integer, Integer> [] rows = new HashMap[9];
+//	    HashMap<Integer, Integer> [] columns = new HashMap[9];
+//	    HashMap<Integer, Integer> [] boxes = new HashMap[9];
+//	    for (int i = 0; i < 9; i++) {
+//	      rows[i] = new HashMap<Integer, Integer>();
+//	      columns[i] = new HashMap<Integer, Integer>();
+//	      boxes[i] = new HashMap<Integer, Integer>();
+//	    }
+//
+//	    for (int i = 0; i < 9; i++) {
+//	    	for (int j = 0; j < 9; j++) {
+//	    		char num = board[i][j];
+//	    		if (num != '.') {
+//	    			int n = (int)num;
+//	    			int box_index = (i / 3 ) * 3 + j / 3;//计算第几个box
+//
+//	    			if (rows[i].containsKey(n)|| columns[j].containsKey(n)|| boxes[box_index].containsKey(n))
+//	    				return false;
+//	    			rows[i].put(n, 1);
+//	    			columns[j].put(n,1);
+//	    			boxes[box_index].put(n,1);
+//	    		}
+//	    	}
+//	    }
+//	    return true;
+//	}
 	
-    
-    public static void main(String[] args){
-    	int[] nums={};
-    }
-    
-    
+	
+//	hash换为数组优化
+//	速度击败88%，内存击败86%
+	public boolean isValidSudoku(char[][] board) {
+		boolean[][] rows = new boolean[9][10];
+		boolean[][] columns = new boolean[9][10];
+		boolean[][] boxes = new boolean[9][10];
+
+	    for (int i = 0; i < 9; i++) {
+	    	for (int j = 0; j < 9; j++) {
+	    		char num = board[i][j];
+	    		if (num != '.') {
+	    			int n = num-'1';
+	    			int box_index = (i / 3 ) * 3 + j / 3;//计算第几个box
+
+	    			if (rows[i][n]|| columns[j][n]|| boxes[box_index][n])
+	    				return false;
+	    			rows[i][n]=true;
+	    			columns[j][n]=true;
+	    			boxes[box_index][n]=true;
+	    		}
+	    	}
+	    }
+	    return true;
+	}
+	
 }
