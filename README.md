@@ -80,6 +80,8 @@ leetcode题解
 
 * 适合解决下一个更大的元素问题（739、496、503）
 
+*  求前 k 大，用小根堆，求前 k 小，用大根堆 能够把复杂度维持在nlogk（T347）
+
 #### 关于哈希表的一些想法
 
 *  hashmap有时候也是不错的选择 。 HashMap<Integer, Integer> hasMap = new HashMap<Integer, Integer>();空间换时间
