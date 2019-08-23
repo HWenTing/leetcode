@@ -25,12 +25,12 @@ public class T62 {
 //    }
     
 	
-//	使用动态规划 a[i][j] = a[i-1][j]+a[i][j-1] 进一步可以转化成dp[j] = dp[j]+dp[j-1] 其中的dp[j]代表a[i][j-1]，dp[j-1]代表 a[i-1][j]
+//	使用动态规划 a[i][j] = a[i-1][j]+a[i][j-1] 进一步可以转化成dp[j] = dp[j]+dp[j-1] 其中的dp[j-1]代表a[i][j-1]，dp[j]代表 a[i-1][j]
 	public int uniquePaths(int m, int n) {//m col  n row
 		int[] dp = new int[m];
 		Arrays.fill(dp, 1);
 		for(int i=1;i<n;i++){
-			for(int j=1;j<m;j++){
+			for(int j=1;j<m;j++){//dp[j-1]代表该层左边，dp[j]代表该列的上一层转移过来
 				dp[j] = dp[j]+dp[j-1];
 			}
 		}
