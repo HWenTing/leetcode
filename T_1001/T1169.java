@@ -1,13 +1,12 @@
-package T_contest;
+package T_1001;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+public class T1169 {
 
-public class W151_5167 {
-
-	
+    public List<String> invalidTransactions(String[] transactions) {
+        
+    }
+    
+    
 //	第一反应是hashmap
 //	我先假设是时间顺序的
 //    public List<String> invalidTransactions(String[] transactions) {
@@ -49,6 +48,4 @@ public class W151_5167 {
 //    		}
 //    	}
 //    }
-//    
-    
 }
