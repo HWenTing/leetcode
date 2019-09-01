@@ -18,7 +18,9 @@ public class T889 {
 //	前序遍历  根左右
 //	后序遍历  左右根
 //	可以用递归的方法，根为pre[0],然后确定左子树大小L，然后确定分别递归左子树和右子树
-
+//	套路与105 106 相似，递归解决，关键是找到左右子树的分界点
+//	速度慢一些，在复制数组的时候比较慢，可以改为索引
+	
     public TreeNode constructFromPrePost(int[] pre, int[] post) {
     	int N = pre.length;
     	if(N==0) return null;
