@@ -1,10 +1,12 @@
 package T_1001;
 
+import java.util.List;
+
 public class T1169 {
 
-    public List<String> invalidTransactions(String[] transactions) {
-        
-    }
+//    public List<String> invalidTransactions(String[] transactions) {
+//        
+//    }
     
     
 //	第一反应是hashmap
