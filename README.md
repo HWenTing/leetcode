@@ -208,7 +208,10 @@ leetcode题解
 
 * sc.nextInt 用完后，还需要sc.nextline来吞掉一个回车
 
-
+* 保留n位小数 String.format("%.nf", d);
+ 
+* 反转list Collections.reverse(lists)
+ 
 
 
 
