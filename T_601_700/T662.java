@@ -20,6 +20,8 @@ public class T662 {
 //	层序遍历，增加序号。对每个节点进行编号，
 	
 //	二进制编号左子树加0，右子树加1
+//	哇其实，你每次加0或者加1的时候，前边的二进制数组都左移了一位，相当于乘2，再加上0或者1，于下边的方法一样	
+	
 //    public int widthOfBinaryTree(TreeNode root) {
 //    	if(root==null) return 0;
 //   	 	Queue<Pair> queue = new LinkedList<>();
