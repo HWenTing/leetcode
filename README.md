@@ -213,6 +213,8 @@ leetcode题解
 * 保留n位小数 String.format("%.nf", d);
  
 * 反转list Collections.reverse(lists)
+
+* 判断一个double变量是否为整数  number%1==0
  
 
 
