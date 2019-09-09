@@ -215,6 +215,13 @@ leetcode题解
 * 反转list Collections.reverse(lists)
 
 * 判断一个double变量是否为整数  number%1==0
+
+* 
+	* 将long转换为16进制字符串Long.toHexString(ans)，字母是小写
+	
+	* 将十六进制字符串转换成long，Long.parseLong(s1, 16)
+	
+* 空字符串和null是不一样的
  
 
 
