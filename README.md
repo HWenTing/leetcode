@@ -222,6 +222,18 @@ leetcode题解
 	* 将十六进制字符串转换成long，Long.parseLong(s1, 16)
 	
 * 空字符串和null是不一样的
+
+* 要把字符串按“.”分割成数组，不可以直接String.split(“.”);，因为.是一种通配符，需要先转义 String.split("\\.")
+
+* 		Comparator<Pair> comparator = new Comparator<Pair>(){
+			@Override
+			public int compare(Pair o1, Pair o2) {
+				return 0;
+			}
+			
+		};
+
+*  mid = low+(up-low)/2;//以后求中点都这样求吧，防止溢出	
  
 
 
