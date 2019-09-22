@@ -215,10 +215,11 @@ leetcode题解
 * dijkstra算法时间复杂度O(mlogn) （看似对每个点nlogn，实际上也对每个边mlogn，一般m>n）
 
 单源最短路径
+
 算法 | 时间复杂度 | 备注
 -|-|-
 dijkstra | O(mlogn) | 非负权重
-Bellman-Ford （动态规划） | O(mn) | 任意权重 OPT(i,v) = min{OPT(i-1,v),min{OPT(i-1,u)+l_(uv)}}//最多i条边到达v点的最小距离
+Bellman-Ford （动态规划） | O(mn) | 任意权重 OPT(i,v) = min{OPT(i-1,v),min{OPT(i-1,u)+l_(uv)}} //最多i条边到达v点的最小距离
 
 * 检测负圈，Bellman-Ford方法如果OPT(n,v)<OPT(n-1,v) 说明存在负圈
 
@@ -228,9 +229,9 @@ Bellman-Ford （动态规划） | O(mn) | 任意权重 OPT(i,v) = min{OPT(i-1,v)
 -|-|-
 Dijkastra | O (mn logn) | 边权重非负
 Bellman-Ford | O (mn^2) | 
-Basic “matrix multiplication” | O (n^4) | 非负圈 
-Improve “matrix multiplication” | O (n^3 logn) | 非负圈
-Floyd-Warshall | O (n^3) | 非负圈
+Basic “matrix multiplication” | O (n^4) | 非负圈  L_(ij)^(m) = min{L_(ik)^(m-1)+w_(kj)} //i到j最多经过m条边的最短路径
+Improve “matrix multiplication” | O (n^3 logn) | 非负圈  类比矩阵乘法
+Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)+d_(jk)^(k-1)} //i到j经过{1,2,..n}的最短路径
 
 
 #### 关于位运算的一些想法
@@ -376,6 +377,17 @@ Floyd-Warshall | O (n^3) | 非负圈
 
 *  ACID 原子性 一致性 隔离性 持久性
 
+* 三次握手，是要保证客户端和服务器端都要确保各自和对方的接受和发送能力正常。
+
+#### 操作系统
+
+* 操作系统的基本特征包括并发、共享、虚拟和异步
+
+	* 并发并行需要硬件支持
+
+
+
+
 * inode 包括以下信息：权限，拥有者群组，容量，建立或状态改变的时间，最近一次的读取时间，最近修改时间，定义文件特性的flag，该文件真正内容的指向
 
 * 虚拟内存允许程序不将地址空间每一页都映射到物理内存，程序不需要全部调入内存就可以运行，这使得有限的内存可以运行大程序
@@ -389,11 +401,6 @@ Floyd-Warshall | O (n^3) | 非负圈
 * 死锁的必要条件：互斥 等待和占有 不可抢占 循环等待
 
 *  进程的状态 创建 就绪 运行 等待 终止
-
-* 三次握手，是要保证客户端和服务器端都要确保各自和对方的接受和发送能力正常。
-
-
-
 
 
 
