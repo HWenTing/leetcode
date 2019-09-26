@@ -7,10 +7,32 @@ public class T443 {
 //	数组的每个元素应该是长度为1 的字符（不是 int 整数类型）。
 //	在完成原地修改输入数组后，返回数组的新长度。
 	
-//	两个指针
     public int compress(char[] chars) {
-        int cur = 0;
-        int run = 0;
+    	if(chars.length<=1) return chars.length;
+        int cnt;
+        int ans=0;
+        for(int i=0;i<chars.length;i++){
+
+        	cnt=1;
+        	while(i+1<chars.length && chars[i]==chars[i+1]){
+
+                i++;
+        		cnt++;
+        	}
+        	if(cnt==1){
+        		chars[ans]=chars[i];
+        		ans++;
+        	}else{
+
+        		chars[ans]=chars[i];
+        		ans++;
+        		
+        		for(char c:(cnt+"").toCharArray()){
+        			chars[ans]=c;
+        			ans++;
+        		}
+        	}
+        }
+        return ans;
     }
-    
 }
