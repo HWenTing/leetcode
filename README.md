@@ -352,6 +352,8 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
  
 * 反转list Collections.reverse(lists)
 
+* 由char数组得到字符串 用new String(chars); 
+
 * 判断一个double变量是否为整数  number%1==0
 
 * 
