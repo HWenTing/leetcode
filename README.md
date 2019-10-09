@@ -207,6 +207,9 @@ leetcode题解
 
 * 回文字符串个数，双指针向外扩散就好（要记住区分奇数长度和偶数长度），T647
 
+* 判断是否为子串 s1.contains(s2) 
+
+
 #### 关于数组与矩阵的一些想法
 
 * 处理有序矩阵，从左下方向右上方（或反过来）经常能够简化很多计算（T240、378）
@@ -334,17 +337,10 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
 
 * 基准的选择堆快速排序影响很大，常用的方法有打乱数组、取两端点和中点的mid值等
 	
-#### 其他想法
+	
+#### java使用
 
 * Comparable 这个interface 很好用，如 class Tuple implements Comparable<Tuple> {}（T378）
-
-* 蒙特卡罗看运气法我也是服了。。。
-
-* KMP算法
-
-* 滑动窗口 （76、438、3）， 可以分成固定窗口大小和可改变窗口大小（更像双指针）
-
-* 前缀和 思想
 
 * sc.nextInt 用完后，还需要sc.nextline来吞掉一个回车
 
@@ -372,6 +368,30 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
 			}
 			
 		};
+		
+* 判断是否为子串 s1.contains(s2)  如果能直接用StringBuffer的lastIndexOf速度会提升很多
+
+*   最小堆 PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>(); 
+
+*   最大堆 
+
+	PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(new Comparator<Integer>(){
+		@Override
+		public int compare(Integer i1,Integer i2){
+			return i2-i1;
+		}	
+	};
+
+#### 其他想法
+
+
+* 蒙特卡罗看运气法我也是服了。。。
+
+* KMP算法
+
+* 滑动窗口 （76、438、3）， 可以分成固定窗口大小和可改变窗口大小（更像双指针）
+
+* 前缀和 思想
 
 *  mid = low+(up-low)/2;//以后求中点都这样求吧，防止溢出	
  
@@ -395,7 +415,7 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
 
 * 柱状图中最大矩形，用单调栈，a[i]>a[i+1] 压入栈，否则出栈，并计算最大值
 
-
+* 前缀树，字典树
 
 
 
