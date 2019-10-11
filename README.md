@@ -385,6 +385,9 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
 			return i2-i1;
 		}	
 	};
+	
+* 哈希表或list初始化的时候 最好确定长度，能够省时	
+
 
 #### 其他想法
 
