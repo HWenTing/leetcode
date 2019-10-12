@@ -1,4 +1,4 @@
-package T_contest;
+package Tc_contest;
 
 import java.util.LinkedList;
 import java.util.PriorityQueue;

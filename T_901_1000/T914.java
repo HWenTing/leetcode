@@ -58,6 +58,7 @@ public class T914 {
 //    }
 	
 	
+//	每次找当前最大公因数于下一个数的最大公因数，若小于2则false
     public boolean hasGroupsSizeX(int[] deck) {
         int[] count = new int[10000];
         for (int c: deck)
@@ -74,7 +75,6 @@ public class T914 {
         		if(g<2) return false;
         	}
         }
-
         return g >= 2;
     }
 

@@ -1,8 +1,7 @@
-package T_contest;
+package T1k_101_200;
 
-public class W149_1155 {
+public class T1155 {
 
-	
 //	d个骰子，每个有f面(1-f)，返回掷出的总点数为target的组合数模10^9+7结果
 	
 //	动态规划，前f个的和

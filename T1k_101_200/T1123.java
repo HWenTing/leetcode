@@ -1,7 +1,13 @@
-package T_1001;
+package T1k_101_200;
 
 import java.util.HashMap;
 
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) { val = x; }
+}
 
 public class T1123 {
 

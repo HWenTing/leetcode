@@ -373,6 +373,8 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
 			
 		};
 		
+	在使用Arrays.sort时即可将作为参数传入
+		
 * 判断是否为子串 s1.contains(s2)  如果能直接用StringBuffer的lastIndexOf速度会提升很多
 
 *   最小堆 PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>(); 
@@ -388,7 +390,9 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
 	
 * 哈希表或list初始化的时候 最好确定长度，能够省时	
 
+* 在使用字符串查找或者匹配时时，要注意正则匹配问题。比如replaceAll方法，对string时正则的。
 
+* 判断是否为数字 Character.isDigit();
 #### 其他想法
 
 

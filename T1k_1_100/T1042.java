@@ -1,4 +1,4 @@
-package T_1001;
+package T1k_1_100;
 
 import java.util.HashMap;
 import java.util.HashSet;
