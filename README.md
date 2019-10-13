@@ -15,7 +15,7 @@ leetcode题解
 
 * 求小于某数的质数有几个 埃拉托斯特尼筛法
 
-* 最大公约数 辗转相除 （也可以通过位操作和减法求解最大公约数）
+* 最大公约数 辗转相除 （也可以通过位操作和减法求解最大公约数） return (b==0)?a:gcd(b,a%b);
 
 * 最小公倍数为两数的乘积除以最大公约数。
 
@@ -393,6 +393,8 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
 * 在使用字符串查找或者匹配时时，要注意正则匹配问题。比如replaceAll方法，对string时正则的。
 
 * 判断是否为数字 Character.isDigit();
+
+* list转为数组 ans.toArray(new String[ans.size()]);
 #### 其他想法
 
 
