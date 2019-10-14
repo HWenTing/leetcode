@@ -36,6 +36,11 @@ leetcode题解
 * 三角形面积公式 海伦公式（知道三边求面积） 二阶行列式绝对值的一半（知道三点求面积）
 
 * 给出矩形左下和右上坐标，判断两个矩形是否有重合的部分。对没有交集的情况取反，即可得到答案；或者类似iou的思想，找相交的部分，如果 up>down &&  right>left，说明相交部分存在 
+
+* 组合数C（n，2）可以转换成 前n-1求和
+
+* 蔡勒公式，计算任意一天是星期几 W=[C/4]-2C+Y+[Y/4]+[13×(M+1)/5]+D-1，
+
 #### 关于链表的一些想法
 
 * 很适合递归或迭代来解决
@@ -373,7 +378,7 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
 			
 		};
 		
-	在使用Arrays.sort时即可将作为参数传入
+	在使用Arrays.sort时即可将作为参数传入。 //注意，要想改变默认的排列顺序，不能使用基本类型（int,double,char）而要使用它们对应的类
 		
 * 判断是否为子串 s1.contains(s2)  如果能直接用StringBuffer的lastIndexOf速度会提升很多
 
@@ -390,11 +395,15 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
 	
 * 哈希表或list初始化的时候 最好确定长度，能够省时	
 
-* 在使用字符串查找或者匹配时时，要注意正则匹配问题。比如replaceAll方法，对string时正则的。
+* 在使用字符串查找或者匹配时时，要注意正则匹配问题。比如replaceAll方法，对string时正则的。但是replace不是正则的，并且也替换全部的
 
 * 判断是否为数字 Character.isDigit();
 
 * list转为数组 ans.toArray(new String[ans.size()]);
+
+* 数组 clone 1维数组是深度克隆，二维数组是浅拷贝。clone方法是从Object类继承过来的，基本数据类型（int ，boolean，char，byte，short，float ，double，long）都可以直接使用clone方法进行克隆，注意String类型是因为其值不可变所以才可以使用。
+
+
 #### 其他想法
 
 
@@ -430,7 +439,7 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
 
 * 前缀树，字典树
 
-
+* 为什么mod 10^9 + 7，int32位的最大值为2147483647，所以对于int32位来说1000000007足够大；int64位的最大值为2^63-1，对于1000000007来说它的平方不会在int64中溢出
 
 
 
