@@ -7,39 +7,21 @@ public class T402 {
 //	num 的长度小于 10002 且 ≥ k。
 //	num 不会包含任何前导零。
 
-	public static void main(String[] args) {
-		System.out.println((int)'0');
-		System.out.println((int)'1');
-		System.out.println((int)'2');
-		System.out.println((int)'3');
-		System.out.println((int)'9');
-		
-	}
-//	每次去掉一位，最大程度减小数组
-//    public String removeKdigits(String num, int k) {
-//        
-//    }
-//    
-//    private String each(String num){
-//    	if(num.length()==1)
-//    		return "0";
-//
-//    	int 
-    	
-    	
-    	
-//    	if(num.charAt(1)=='0'){
-//    		int start=2;
-//    		while(start<num.length() && num.charAt(start)=='0')
-//    			start++;
-//    		if(start==num.length())
-//        		return "0";
-//    		else
-//    			return num.substring(start);
-//    	}else{
-//    		int max
-//    		for(int i)
-//    	}
-//    }
+	
+//	思路，从左到右，找第一个比后面大的字符，删除，清零，k次扫描。
+    public String removeKdigits(String num, int k) {
+        if (num.length() == k) return "0";
+        StringBuilder s = new StringBuilder(num);
+        for (int i = 0; i < k; i++) {
+        	
+            int idx = 0;
+            while(idx+1< s.length() &&s.charAt(idx+1) >= s.charAt(idx))//找第一个比后面大的字符
+            	idx++;
+            
+            s.delete(idx, idx + 1);
+            while (s.length() > 1 && s.charAt(0) == '0') s.delete(0, 1);
+        }
+        return s.toString();
+    }
     
 }
