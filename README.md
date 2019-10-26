@@ -352,7 +352,6 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
 
 * 找区间的 很多情况对起点终点用贪心算法
 
-* 
 
 	
 #### java使用
