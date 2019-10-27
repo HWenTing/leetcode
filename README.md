@@ -353,7 +353,6 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
 * 找区间的 很多情况对起点终点用贪心算法
 
 
-	
 #### java使用
 
 * Comparable 这个interface 很好用，如 class Tuple implements Comparable<Tuple> {}（T378）
@@ -446,7 +445,7 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
 
 * 前缀树，字典树
 
-* 为什么mod 10^9 + 7，int32位的最大值为2147483647，所以对于int32位来说1000000007足够大；int64位的最大值为2^63-1，对于1000000007来说它的平方不会在int64中溢出
+* 为什么mod 10^9 + 7，因为int32位的最大值为2147483647，所以对于int32位来说1000000007足够大；int64位的最大值为2^63-1，对于1000000007来说它的平方不会在int64中溢出
 
 
 
