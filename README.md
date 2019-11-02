@@ -409,6 +409,8 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
 
 * 数组 clone 1维数组是深度克隆，二维数组是浅拷贝。clone方法是从Object类继承过来的，基本数据类型（int ，boolean，char，byte，short，float ，double，long）都可以直接使用clone方法进行克隆，注意String类型是因为其值不可变所以才可以使用。
 
+* LinkedHashMap LinkedHashMap继承了HashMap，有序hash
+
 
 #### 其他想法
 
