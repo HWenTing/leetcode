@@ -16,7 +16,7 @@ class dNode{
 public class T146 {
 
 //	O(1)时间内完成 LRU的插入删除操作
-
+// 双向链表，伪头节点，伪尾节点
 	int capacity,cnt;
 	dNode dummyhead,dummyend;
 	HashMap<Integer,dNode> map;
