@@ -419,6 +419,15 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
 
 * LinkedHashMap LinkedHashMap继承了HashMap，有序hash
 
+* 根据HashMap的值来排序 ：先将map的Entry们转化为list 然后用collections自定义排序规则排序
+        List<Map.Entry<Character,Integer>> list = new ArrayList<>(map.entrySet());
+        Collections.sort(list,new Comparator<Map.Entry<Character,Integer>>() {
+        	@Override
+        	public int compare(Entry<Character,Integer> o1,
+                    Entry<Character,Integer> o2) {
+                return o2.getValue()-o1.getValue();
+            }
+        });
 
 #### 其他想法
 
