@@ -3,19 +3,23 @@ package Other;
 import java.util.Stack;
 
 public class Calculater {
-
+//  整数计算器实现
+//	支持 加 减 乘 除 括号 乘方
 //	符号栈数据栈
 	
-//	+ - * / 
+//	+ - * / ( )  优先级定义
 	private int[] compare = new int[108];
 	{
 		compare['+']=0;
 		compare['-']=0;
 		compare['*']=1;
 		compare['/']=1;
-		compare['#']=-1;
+		compare['^']=2;
+		compare['(']=-1;
+		compare[')']=-1;
+		compare['#']=-10;
 	}
-	
+//	比较优先级大小
 	private boolean heighter(char left,char right){
 		return compare[right]-compare[left]>0;
 	}
@@ -31,6 +35,8 @@ public class Calculater {
 			return b*a;
 		case '/':
 			return b/a;
+		case '^':
+			return (int)Math.pow(b, a);
 		default:
 			return -1;
 		}
@@ -54,9 +60,14 @@ public class Calculater {
         	}else{
         		newint=true;
         		if(c==' ') continue;
-        		if(charst.isEmpty() || heighter(charst.peek(),c)){
+        		
+        		if(charst.isEmpty() || c=='(' || heighter(charst.peek(),c)){//如果当前符号是第一个符号 或 括号 或 优先级高于前一个符号 直接push进去
         			charst.push(c);
         		}else{
+        			if(charst.peek()=='('){//特殊处理括号
+        				charst.pop();
+        				continue;
+        			}
         			i--;
         			numst.push(item(numst.pop(),numst.pop(),charst.pop()));
         		}
@@ -67,12 +78,15 @@ public class Calculater {
     }
     
     public static void main(String[] args) {
-		System.out.println((int)'(');
-		System.out.println((int)')');
-		System.out.println((int)'+');
-		System.out.println((int)'-');
-		System.out.println((int)'*');
-		System.out.println((int)'/');
-		System.out.println((int)'#');
+    	Calculater c = new Calculater();
+//    	System.out.println(c.calculate("1-2*(2-9)/3"));
+    	System.out.println(c.calculate("1-2*(2-9)^2/2"));
+//		System.out.println((int)'(');
+//		System.out.println((int)')');
+//		System.out.println((int)'+');
+//		System.out.println((int)'-');
+//		System.out.println((int)'*');
+//		System.out.println((int)'/');
+//		System.out.println((int)'#');
 	}
 }
