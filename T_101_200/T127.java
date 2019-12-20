@@ -8,7 +8,7 @@ import java.util.Queue;
 
 public class T127 {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        wordList.add(beginWord);
+        wordList.add(0,beginWord);
         int n = wordList.size();
         int i;
         for (i=0;i<n;i++){
@@ -54,11 +54,14 @@ public class T127 {
     private List<Integer>[] makeGraph(List<String> wordList){
     	int n = wordList.size();
     	List<Integer>[] graph = new List[n];
-    	for (int i=0;i<n;i++){
+    	for (int i=0;i<n;i++)
     		graph[i] = new ArrayList<Integer>();
-    		for (int j=0;j<n;j++){
-    			if(isConnected(wordList.get(i),wordList.get(j)))
+    	for (int i=0;i<n;i++){
+    		for (int j=i+1;j<n;j++){
+    			if(isConnected(wordList.get(i),wordList.get(j))){
     				graph[i].add(j);
+    				graph[j].add(i);
+    			}
     		}
     	}
     	return graph;
@@ -67,7 +70,7 @@ public class T127 {
     private boolean isConnected(String s1,String s2){
     	int len = s1.length();
     	int count=0;
-    	for (int i=0;i<len;i++){
+    	for (int i=0;i<len && count<=1;i++){
     		if(s1.charAt(i)!=s2.charAt(i)){
     			count++;
     		}
