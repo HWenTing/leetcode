@@ -15,7 +15,17 @@ leetcode题解
 
 * 求小于某数的质数有几个 埃拉托斯特尼筛法
 
-* 最大公约数 辗转相除 （也可以通过位操作和减法求解最大公约数） return (b==0)?a:gcd(b,a%b);
+* 最大公约数 辗转相除 （也可以通过位操作和减法求解最大公约数） 递归 return (b==0)?a:gcd(b,a%b);
+* 非递归实现：
+	private int gcd(int a, int b) {
+		while (b != 0) {
+			int temp = a % b;
+			a = b;
+			b = temp;
+		}
+		return a;
+	}
+
 
 * 最小公倍数为两数的乘积除以最大公约数。
 
