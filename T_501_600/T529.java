@@ -20,6 +20,8 @@ public class T529 {
         
         while(!queue.isEmpty()){
         	int[] cur = queue.poll();
+        	if(board[cur[0]][cur[1]]!='E') continue;
+        			
         	int c = count(board,cur[0],cur[1]);
         	if(c==0){
         		board[cur[0]][cur[1]]= 'B';
