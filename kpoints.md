@@ -1,3 +1,16 @@
+
+####  JAVA基础知识问答
+1.  **什么是Java虚拟机？为什么Java被称作是“平台无关的编程语言”？**
+	* Java虚拟机是一个可以执行Java字节码的虚拟机进程。Java源文件被编译成能被Java虚拟机执行的字节码文件。也就是class文件
+	* Java被设计成允许应用程序可以运行在任意的平台，而不需要程序员为每一个平台单独重写或者是重新编译。Java虚拟机让这个变为可能，因为它知道底层硬件平台的指令长度和其他特性。java源程序先通过javac编译成二进制class文件，class文件运行在jvm上，根据不同的机器硬件，jvm将同样的class文件转换成对应硬件的机器码。
+
+2.  **JDK和JRE的区别是什么？**
+	* JRE(Java Runtime Environment)  java运行时环境，包含了java虚拟机，java基础类库，是使用java语言编写的程序运行所需要的软件环境，是提供给想运行java程序的用户使用的。
+	* JDK(Java Development Kit) java开发工具包，包含了JRE，以及编译器javac，调试工具等，提供给程序员使用
+	![Alt text](./jREJDK.png)
+3. ** **
+
+
 #### 操作系统
 
 * 操作系统的基本特征包括并发、共享、虚拟和异步
