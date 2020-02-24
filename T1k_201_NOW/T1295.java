@@ -1,4 +1,4 @@
-package T1k_201_300;
+package T1k_201_NOW;
 
 public class T1295 {
 //	给你一个整数数组 nums，请你返回其中位数为 偶数 的数字的个数。
