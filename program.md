@@ -451,6 +451,7 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
             }
         });
 
+* 一般重写equals方法时也也要重写hashcode方法，为了保证行为一致性。通过源码可以看出hashset等应用判断时既要判断hashcode也会判断equals。
 #### 其他想法
 
 * 蒙特卡罗看运气法我也是服了。。。
