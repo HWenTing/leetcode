@@ -7,7 +7,7 @@
 2.  **JDK和JRE的区别是什么？**
 	* JRE(Java Runtime Environment)  java运行时环境，包含了java虚拟机，java基础类库，是使用java语言编写的程序运行所需要的软件环境，是提供给想运行java程序的用户使用的。
 	* JDK(Java Development Kit) java开发工具包，包含了JRE，以及编译器javac，调试工具等，提供给程序员使用
-	![Alt text](./jREJDK.png)
+	<div align=center>![Alt text](./jREJDK.png)
 	
 3. **static关键字是什么意思？Java中是否可以覆盖(override)一个private或者是static的方法？** 
 	* static 是静态的意思，表示该方法的调用不需要通过类的实例来使用
@@ -68,7 +68,7 @@
 		* 同步阻塞：运行( running )的线程在获取对象的同步锁时，若该同步锁 被别的线程占用，则 JVM 会把该线程放入锁池( lock pool )中。
 		* 其他阻塞: 运行( running )的线程执行 Thread . sleep ( long ms )或 t . join ()方法，或者发出了 I / O 请求时， JVM 会把该线程置为阻塞状态。当 sleep ()状态超时、 join ()等待线程终止或者超时、或者 I / O 处理完毕时，线程重新转入可运行( runnable )状态。
 	*  死亡( dead )：线程 run ()、 main () 方法执行结束，或者因异常退出了 run ()方法，则该线程结束生命周期。死亡的线程不可再次复生。 
-![Alt text](./Thread.jpg)
+<div align=center>![Alt text](./Thread.jpg)
 
 13. **同步方法和同步代码块的区别是什么？**
 	* 同步方法默认用this或者当前类class对象作为锁；
@@ -85,7 +85,7 @@
 
 16. **Java集合类框架的基本接口有哪些？**
 	* 两大类接口 Collection和Map。Collection下包含List、Set等，ArrayList和 LinkedList 实现了List接口，HashSet实现了Set接口。HashMap 和HashTable实现了Map接口，并且HashTable是线程安全的，但是HashMap性能更好
-![Alt text](./1582794436856.png)
+<div align=center>![Alt text](./1582794436856.png)
 
 17. **为什么集合类没有实现Cloneable和Serializable接口？**
 	* 克隆(cloning)或者是序列化(serialization)的语义和含义是跟具体的实现相关的。因此，应该由集合类的具体实现来决定如何被克隆或者是序列化。即，集合类框架中的接口没有实现Cloneable和Serializable接口，但是具体的实现类是实现了这些接口的，比如Arraylist
@@ -155,11 +155,11 @@ remove(Object Obj)删除，可以通过迭代器的remove()方法删除。
 		* 加载该类的classLoader已经被回收 
 		* 该类不能通过反射访问到其方法，而且该类的java.lang.class没有被引用 
 	* 当满足这3个条件时，是可以回收，但回不回收还得看jvm。
-![Alt text](./1583047442635.png)
+<div align=center>![Alt text](./1583047442635.png)
 
 30. **Java中的两种异常类型是什么？他们有什么区别？**
 	* Throwable包含了错误(Error)和异常(Excetion两类).Exception又包含了运行时异常(RuntimeException, 又叫非检查异常)和非运行时异常(又叫检查异常)。非检查异常包括RuntimeException及其子类，一般都是由于程序的逻辑错误引起的，在编码的时候就可以避免，因此没必要进行检查。其他异常都属于检查异常。
-![Alt text](./1583048476224.png)
+<div align=center>![Alt text](./1583048476224.png)
 
 31. **Java中Exception和Error有什么区别？**
 	*	Error类一般是指与虚拟机相关的问题，如系统崩溃，虚拟机错误，内存空间不足，方法调用栈溢等。对于这类错误的导致的应用程序中断，仅靠程序本身无法恢复和和预防，遇到这样的错误，建议让程序终止。
@@ -216,7 +216,7 @@ remove(Object Obj)删除，可以通过迭代器的remove()方法删除。
 	* 存根和骨架层(Stub and Skeleton layer)：这一层对程序员是透明的，它主要负责拦截客户端发出的方法调用请求，然后把请求重定向给远程的RMI服务。
 	* 远程引用层(Remote Reference Layer)：RMI体系结构的第二层用来解析客户端对服务端远程对象的引用。这一层解析并管理客户端对服务端远程对象的引用。连接是点到点的。
 	* 传输层(Transport layer)：这一层负责连接参与服务的两个JVM。这一层是建立在网络上机器间的TCP/IP连接之上的。它提供了基本的连接服务，还有一些防火墙穿透策略。
-![Alt text](./1583141968822.png)
+<div align=center>![Alt text](./1583141968822.png)
 
 42. **RMI中的远程接口(Remote Interface)扮演了什么样的角色？**
 	* 远程接口用来标识哪些方法是可以被非本地虚拟机调用的接口。远程对象必须要直接或者是间接实现远程接口。实现了远程接口的类应该声明被实现的远程接口，给每一个远程对象定义构造函数，给所有远程接口的方法提供实现。
@@ -236,7 +236,60 @@ remove(Object Obj)删除，可以通过迭代器的remove()方法删除。
 46. **解释下Serialization和Deserialization。解释下Marshalling和demarshalling。**
 	* 序列化，实现序列化和反序列化的对象必须实现serializable接口，序列化是将对象变成字节流，存储到磁盘或网络。反序列化是序列化的反过程。
 	* 当应用程序希望把内存对象跨网络传递到另一台主机或者是持久化到存储的时候，就必须要把对象在内存里面的表示转化成合适的格式。这个过程就叫做Marshalling，反之就是demarshalling。比如：
-![Alt text](./1583143937635.png)
+<div align=center>![Alt text](./1583143937635.png)
+
+47. **什么是Servlet？Servlet体系结构？**
+	* Servlet是用来处理客户端请求并产生动态网页内容的Java类。Servlet主要是用来处理或者是存储HTML表单提交的数据，产生动态内容，在无状态的HTTP协议下管理状态信息。
+	* 所有的Servlet都必须要实现的核心的接口是javax.servlet.Servlet。每一个Servlet都必须要直接或者是间接实现这个接口，或者是继承javax.servlet.GenericServlet或者javax.servlet.http.HTTPServlet。最后，Servlet使用多线程可以并行的为多个请求服务。
+	* Servlet类包含所需的三个必要的生命周期方法：init()初试化Servlet、service()相应Servlet请求、destroy()销毁Servlet，但直接继承需要重写所有方法，所以GenericServlet类继承了Servlet类并实现了所有方法，但它不是HTTP协议类，所以又由HttpServlet类继承GenericServlet类并是HTTP协议类。所以我们在建立Servlet类时只需继承HttpServlet类，重写我们需要的doGet()，doPost()请求即可，这两个方法对应客户端的get和post请求。
+	* https://blog.csdn.net/a236209186/article/details/51262646
+<div align=center>![Alt text](./1583170758681.png)
+
+48. **GenericServlet和HttpServlet有什么区别？**
+	* GenericServlet  是 Servlet 接口和 ServletConfig 接口的实现类. 但是一个抽象类. 其中的 service 方法为抽象方法
+	* HttpServlet 是GenericServlet的子类，针对于 HTTP 协议所定制. 实际开发中, 直接继承 HttpServlet, 并根据请求方式复写 doXxx() 方法即可.
+	* Genericservlet是httpservlet 的父类，提供了service方法，在实现时要实现service方法，httpservlet做了精简，提供了doget dopost 方法，更加适用与http协议，
+
+49. **解释下Servlet的生命周期。**
+	* Servlet程序是由WEB服务器调用，web服务器收到客户端的Servlet访问请求后：
+①Web服务器首先检查是否已经装载并创建了该Servlet的实例对象。如果是，则直接执行第④步，否则，执行第②步。
+②装载并创建该Servlet的一个实例对象。 
+③调用Servlet实例对象的init()方法。
+④创建一个用于封装HTTP请求消息的HttpServletRequest对象和一个代表HTTP响应消息的HttpServletResponse对象，然后调用Servlet的service()方法并将请求和响应对象作为参数传递进去。
+⑤WEB应用程序被停止或重新启动之前，Servlet引擎将卸载Servlet，并在卸载之前调用Servlet的destroy()方法。
+<div align=center>![Alt text](./1583214985519.png)
+
+50. **doGet()方法和doPost()方法有什么区别？**
+	* doGet：处理GET请求 doPost：处理POST请求。当发出客户端请求的时候，调用service方法并传递一个请求和响应对象。Servlet首先判断该请求是GET操作还是POST 操作。然后它调用下面的一个方法：doGet 或 doPost。如果请求是GET就调用doGet方法，如果请求是POST就调用doPost方法。doGet和doPost都接受请求(HttpServletRequest)和响应(HttpServletResponse)。
+	* get是从服务器上获取数据，路径传参。传输的数据量较小，效率高，安全性差
+	* post是向服务器传送数据，实体传参。传送的数据量较大，效率第，安全性好
+	* 在做数据查询时，建议用Get方式；而在做数据添加、修改或删除时，建议用Post方式；
+
+51. **什么是Web应用程序？**
+	* Web应用程序是一种可以通过Web访问的应用程序，基于典型的B/S模式的应用程序，核心是对数据库的相关操作和处理。Web应用程序的一个最大好处是用户很容易访问应用程序。用户只需要有浏览器即可，不需要再安装其他软件。一个Web应用程序是由完成特定任务的各种Web组件（web components)构成的并通过Web将服务展示给外界。在实际应用中，Web应用程序是由多个Servlet、JSP页面、HTML文件以及图像文件等组成。所有这些组件相互协调为用户提供一组完整的服务。
+	* 有两种类型的Web应用：面向表现的和面向服务的。面向表现的Web应用程序会产生包含了很多种标记语言和动态内容的交互的web页面作为对请求的响应。而面向服务的Web应用实现了Web服务的端点(endpoint)。一般来说，一个Web应用可以看成是一组安装在服务器URL名称空间的特定子集下面的Servlet的集合。
+
+52. **什么是服务端包含(Server Side Include)？**
+	*服务端包含(SSI)是一种简单的解释型服务端脚本语言，大多数时候仅用在Web上，用servlet标签嵌入进来。SSI是在页面被提供时由服务器端进行运算，以对现有html页面增加动态生成的内容；如果增加的动态内容少，就用SSI，如果整个页面大多数都需要动态加载，则可以使用cgi提供整个页面，或者使用其他的动态技术。
+	* 通常SSI可以用来确保网页中的一些通用内容，比如版权信息、联系方式、或导航信息在全站所有网页中保持一致。使用SSI显示这些通用内容还可以减轻网站维护的工作量，因为当需要修改这些通用信息的时候，只需要改一个地方就可以了，而不需要逐个修改每一个网页。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
