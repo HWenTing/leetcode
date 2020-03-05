@@ -7,23 +7,26 @@
 2.  **JDK和JRE的区别是什么？**
 	* JRE(Java Runtime Environment)  java运行时环境，包含了java虚拟机，java基础类库，是使用java语言编写的程序运行所需要的软件环境，是提供给想运行java程序的用户使用的。
 	* JDK(Java Development Kit) java开发工具包，包含了JRE，以及编译器javac，调试工具等，提供给程序员使用
-	<div align=center>![Alt text](./jREJDK.png)
+![Alt text](./pic/jREJDK.png)
 	
 3. **static关键字是什么意思？Java中是否可以覆盖(override)一个private或者是static的方法？** 
 	* static 是静态的意思，表示该方法的调用不需要通过类的实例来使用
 	* Java中static方法不能被覆盖。因为方法覆盖是基于运行时动态绑定的，而static方法是编译时静态绑定的。static方法跟类的任何实例都不相关，所以概念上不适用。
 	* java中也不可以覆盖private的方法，因为private修饰的变量和方法只能在当前类中使用，如果是其他的类继承当前类是不能访问到private变量或方法的，当然也不能覆盖。
 
-4. **是否可以在static环境中访问非static变量？  **
+4. **是否可以在static环境中访问非static变量？** 
 	* 可以访问，但是不可以直接访问。需要有类的实例来访问。static变量属于类，随着类的加载而加载到静态方法区内存。当类加载时，此时不一定有实例创建，没有实例，就不可以访问非静态的成员。
 
 5. **什么是自动拆装箱？**
 	* Java支持的数据类型包括两种 一种是基本数据类型：byte short int long float double char boolean 另一种是引用数据类型，如String等，其实是对象的引用，JVM中虚拟栈中存的是对象的地址，创建的对象实质在堆中，通过地址来找到堆中的对象的过程，即为引用类型。自动装箱就是Java编译器在基本数据类型和对应的对象包装类型间的转化，即int转化为Integer,自动拆箱是Integer调用其方法将其转化为int的过程
 	* 常量池的关系，在创建一个-128～127之间的Integer时，它不会创建新对象
+	
 6. **重载和重写注意点**
 	* 被重写的方法不能为static。如果父类中的方法为静态的，而子类中的方法不是静态的，但是两个方法除了这一点外其他都满足重写条件，那么会发生编译错误（即静态方法不能被重写）；反之亦然。即使父类和子类中的方法都是静态的，并且满足重写条件，但是仍然不会发生重写，因为静态方法是在编译的时候把静态方法和类的引用类型进行匹配（Father a=new Son（）；若Father有个静态方法f（），其子类Son也有个相同静态方法f（），那么a.f（）是调用的Father的f（），也就是说引用a和Father的静态方法匹配）。
+
 7. **什么是复制构造方法？**
 	* 复制构造方法是c++里的概念，java里不存在复制构造方法。复制构造函数就是将本类的对象作为参数的构造函数，目的是用一个已经实例化的对象来初始化另一个对象，简单点说就是拷贝一个对象。Java并不支持这样的复制构造函数。但是这并不代表Java中没有这种机制，在Java中Object类的clone()方法就是这种机制的体现。
+
 8. **接口和抽象类的区别是什么？**
 	* 从设计层面来说，抽象是对类的抽象，是一种模板设计，接口是行为的抽象，是一种行为的规范。
 	* 接口中所有的方法隐含的都是抽象的，抽象类中可以有非抽象方法
@@ -32,18 +35,21 @@
 	* Java接口中的成员函数默认是public的。抽象类的成员函数可以是private，protected或者是public。
 	* 接口不能用new实例化，但可以声明，但是必须引用一个实现该接口的对象
 	* java8后 接口中用default修饰的方法可以有函数体（可以实现）
+
 9.  **进程和线程的区别是什么？**
 	* 进程是执行着的应用程序，而线程是进程内部的一个执行序列。一个进程可以有多个线程。线程又叫做轻量级进程。
 	* 地址空间和其它资源：进程间相互独立，同一进程的各线程间共享。某进程内的线程在其它进程不可见。
 	* .通信：进程间通信IPC，线程间可以直接读写进程数据段（如全局变量）来进行通信——需要进程同步和互斥手段的辅助，以保证数据的一致性。
 	* 调度和切换：线程上下文切换比进程上下文切换要快得多。
-10.  **创建线程有几种不同的方式？**
+
+10. **创建线程有几种不同的方式？**
 	* ①继承Thread类（真正意义上的线程类），是Runnable接口的实现。（1）定义Thread类的子类，并重写该类的run方法，该run方法的方法体就代表了线程要完成的任务。因此把run()方法称为执行体。（2）创建Thread子类的实例，即创建了线程对象。（3）调用线程对象的start()方法来启动该线程。
 	* ②实现Runnable接口，并重写里面的run方法。（1）定义runnable接口的实现类，并重写该接口的run()方法，该run()方法的方法体同样是该线程的线程执行体。（2）创建 Runnable实现类的实例（注意 ，这里声明的是实现类，构造方法也是实现类的构造方法），并依此实例作为Thread构造方法的参数来创建Thread对象，该Thread对象才是真正的线程对象。（3）调用线程对象的start()方法来启动该线程。
 	* ③使用Executor框架创建线程池。Executor框架是juc里提供的线程池的实现。
 	* ④实现callable接口，重写call方法，有返回值。
 	* 继承于Thread类的线程类，可以直接调用start方法启动线程 ; 实现Runnable接口的类需要再次用Thread类包装后才能调用start方法。
 	* Runnable接口有如下好处：①避免点继承的局限，一个类可以继承多个接口。②适合于资源的共享，多个线程可以共享一个runnable对象，所以非常适合多个相同线程来处理同一份资源的情况。但是也有缺点，thread子类获取线程时，用this.即可，而runnable接口则需要Thread.currentThread（）这个静态方法。
+
 11. **Thread的常用方法**
 	* start()：启动线程并执行相应的run()方法
 	* run():子线程要执行的代码放入run()方法中
@@ -59,7 +65,8 @@
 	* wait():当一个线程调用了object.wait()，那么它就会进入object对象的等待队列。这个等待队列中，可能会有多个线程，因为系统运行多个线程同时等待某一个对象。
 	* notify():当object对象调用了obj.notify()方法，就会从这个等待队列，随机选择一个线程将其唤醒。这里的选择是不公平的完全是随机的。
 	* notifyAll()：它与notify()方法的功能基本一致，不同的是它在唤醒这个等待队列中的所有等待线程而不是随机选择一个
-12.  **解释下线程的几种可用状态。**
+
+12. **解释下线程的几种可用状态。**
 	* new 新建一个线程对象
 	* runnable 线程对象创建后，调用start方法。该状态的线程位于可运行线程池中，等待被线程调度选中，从而获得cpu的使用权
 	* running runnable状态的线程获得了cpu的使用权，执行程序代码
@@ -68,7 +75,7 @@
 		* 同步阻塞：运行( running )的线程在获取对象的同步锁时，若该同步锁 被别的线程占用，则 JVM 会把该线程放入锁池( lock pool )中。
 		* 其他阻塞: 运行( running )的线程执行 Thread . sleep ( long ms )或 t . join ()方法，或者发出了 I / O 请求时， JVM 会把该线程置为阻塞状态。当 sleep ()状态超时、 join ()等待线程终止或者超时、或者 I / O 处理完毕时，线程重新转入可运行( runnable )状态。
 	*  死亡( dead )：线程 run ()、 main () 方法执行结束，或者因异常退出了 run ()方法，则该线程结束生命周期。死亡的线程不可再次复生。 
-<div align=center>![Alt text](./Thread.jpg)
+![Alt text](./pic/Thread.jpg)
 
 13. **同步方法和同步代码块的区别是什么？**
 	* 同步方法默认用this或者当前类class对象作为锁；
@@ -85,7 +92,7 @@
 
 16. **Java集合类框架的基本接口有哪些？**
 	* 两大类接口 Collection和Map。Collection下包含List、Set等，ArrayList和 LinkedList 实现了List接口，HashSet实现了Set接口。HashMap 和HashTable实现了Map接口，并且HashTable是线程安全的，但是HashMap性能更好
-<div align=center>![Alt text](./1582794436856.png)
+![Alt text](./pic/集合框架.png)
 
 17. **为什么集合类没有实现Cloneable和Serializable接口？**
 	* 克隆(cloning)或者是序列化(serialization)的语义和含义是跟具体的实现相关的。因此，应该由集合类的具体实现来决定如何被克隆或者是序列化。即，集合类框架中的接口没有实现Cloneable和Serializable接口，但是具体的实现类是实现了这些接口的，比如Arraylist
@@ -93,14 +100,13 @@
 
 18. **什么是迭代器(Iterator)？**
 	* 迭代器是一种设计模式，它是一个对象，它可以遍历并选择序列中的对象，而开发人员不需要了解该序列的底层结构。迭代器通常被称为“轻量级”对象，因为创建它的代价小。
-	* Iterator接口提供了很多对集合元素进行迭代的方法。每一个集合类都包含了可以返回迭代器实例的迭代方法。迭代器可以在迭代的过程中删除底层集合的元素,但是不可以直接调用集合的
-remove(Object Obj)删除，可以通过迭代器的remove()方法删除。
+	* Iterator接口提供了很多对集合元素进行迭代的方法。每一个集合类都包含了可以返回迭代器实例的迭代方法。迭代器可以在迭代的过程中删除底层集合的元素,但是不可以直接调用集合的remove(Object Obj)删除，可以通过迭代器的remove()方法删除。
 
 19. **快速失败(fail-fast)和安全失败(fail-safe)的区别是什么？**
 	* 快速失败： 在用迭代器遍历一个集合对象时，如果遍历过程中对集合对象的结构（只对值进行修改不会抛出错误）进行了修改（增加、删除），则会抛出Concurrent Modification Exception。在 java.util 包的HashMap、ArrayList 这些集合类都是快速失败的。
 		* 原理：迭代器在遍历时直接访问集合中的内容，并且在遍历过程中使用一个 modCount 变量。集合在被遍历期间如果结构发生变化，就会改变modCount的值。每当迭代器使用hashNext()/next()遍历下一个元素之前，都会检测modCount变量是否为expectedmodCount值，是的话就返回遍历；否则抛出异常，终止遍历。
 	* 安全失败： 采用安全失败机制的集合容器，在遍历时不是直接在集合内容上访问的，而是先复制原有集合内容，在拷贝的集合上进行遍历。java.util.concurrent 包下的类都是安全失败，比如：ConcurrentHashMap。
-		*   原理：由于迭代时是对原集合的拷贝进行遍历，所以在遍历过程中对原集合所作的修改并不能被迭代器检测到，所以不会触发Concurrent Modification Exception。
+		* 原理：由于迭代时是对原集合的拷贝进行遍历，所以在遍历过程中对原集合所作的修改并不能被迭代器检测到，所以不会触发Concurrent Modification Exception。
 
 20. **Java中的HashMap的工作原理是什么？**
 	* hashmap是一种键值对的数据结构，jdk1.8后用数组+链表+红黑树的方式实现。hashmap数组的默认初始长度是16，hashmap数组只允许一个key为null，允许多个value为null。
@@ -112,7 +118,7 @@ remove(Object Obj)删除，可以通过迭代器的remove()方法删除。
 	* Hashtable是同步的，而HashMap不是。因此，HashMap更适合于单线程环境，而Hashtable适合于多线程环境
 	* HashMap是非线程安全的，HashTable是线程安全的。
 	* 因为线程安全的问题，HashMap效率比HashTable的要高。
-	*  一般现在不建议用HashTable, ①是HashTable是遗留类，内部实现很多没优化和冗余。②即使在多线程环境下，现在也有同步的ConcurrentHashMap替代，没有必要因为是多线程而用HashTable。
+	* 一般现在不建议用HashTable, ①是HashTable是遗留类，内部实现很多没优化和冗余。②即使在多线程环境下，现在也有同步的ConcurrentHashMap替代，没有必要因为是多线程而用HashTable。
 
 22. **Comparable和Comparator接口是干什么的？列出它们的区别。**
 	* Comparable是修改类内部来定义比较大小的方法。类实现了Comparable接口，然后重写了compareTo方法（这个方法可以看作比较器），这个类就拥有了内部比较器。
@@ -155,11 +161,11 @@ remove(Object Obj)删除，可以通过迭代器的remove()方法删除。
 		* 加载该类的classLoader已经被回收 
 		* 该类不能通过反射访问到其方法，而且该类的java.lang.class没有被引用 
 	* 当满足这3个条件时，是可以回收，但回不回收还得看jvm。
-<div align=center>![Alt text](./1583047442635.png)
+![Alt text](./pic/JVM内存管理.png)
 
 30. **Java中的两种异常类型是什么？他们有什么区别？**
 	* Throwable包含了错误(Error)和异常(Excetion两类).Exception又包含了运行时异常(RuntimeException, 又叫非检查异常)和非运行时异常(又叫检查异常)。非检查异常包括RuntimeException及其子类，一般都是由于程序的逻辑错误引起的，在编码的时候就可以避免，因此没必要进行检查。其他异常都属于检查异常。
-<div align=center>![Alt text](./1583048476224.png)
+![Alt text](./pic/JAVA错误分类.png)
 
 31. **Java中Exception和Error有什么区别？**
 	*	Error类一般是指与虚拟机相关的问题，如系统崩溃，虚拟机错误，内存空间不足，方法调用栈溢等。对于这类错误的导致的应用程序中断，仅靠程序本身无法恢复和和预防，遇到这样的错误，建议让程序终止。
@@ -216,12 +222,12 @@ remove(Object Obj)删除，可以通过迭代器的remove()方法删除。
 	* 存根和骨架层(Stub and Skeleton layer)：这一层对程序员是透明的，它主要负责拦截客户端发出的方法调用请求，然后把请求重定向给远程的RMI服务。
 	* 远程引用层(Remote Reference Layer)：RMI体系结构的第二层用来解析客户端对服务端远程对象的引用。这一层解析并管理客户端对服务端远程对象的引用。连接是点到点的。
 	* 传输层(Transport layer)：这一层负责连接参与服务的两个JVM。这一层是建立在网络上机器间的TCP/IP连接之上的。它提供了基本的连接服务，还有一些防火墙穿透策略。
-<div align=center>![Alt text](./1583141968822.png)
+![Alt text](./pic/JAVA错误分类.png)
 
 42. **RMI中的远程接口(Remote Interface)扮演了什么样的角色？**
 	* 远程接口用来标识哪些方法是可以被非本地虚拟机调用的接口。远程对象必须要直接或者是间接实现远程接口。实现了远程接口的类应该声明被实现的远程接口，给每一个远程对象定义构造函数，给所有远程接口的方法提供实现。
 
-43.  **java.rmi.Naming类扮演了什么样的角色？**
+43. **java.rmi.Naming类扮演了什么样的角色？**
 	* java.rmi.Naming类用来存储和获取在远程对象注册表里面的远程对象的引用。Naming类的每一个方法接收一个URL格式的String对象作为它的参数。
 	* 比如： MyRemoteImpl my = (MyRemoteImpl)Naming.lookup("rmi://xxx.xxx.xx.xx/myExample");
 	
@@ -236,14 +242,14 @@ remove(Object Obj)删除，可以通过迭代器的remove()方法删除。
 46. **解释下Serialization和Deserialization。解释下Marshalling和demarshalling。**
 	* 序列化，实现序列化和反序列化的对象必须实现serializable接口，序列化是将对象变成字节流，存储到磁盘或网络。反序列化是序列化的反过程。
 	* 当应用程序希望把内存对象跨网络传递到另一台主机或者是持久化到存储的时候，就必须要把对象在内存里面的表示转化成合适的格式。这个过程就叫做Marshalling，反之就是demarshalling。比如：
-<div align=center>![Alt text](./1583143937635.png)
+![Alt text](./pic/marshalling.png)
 
 47. **什么是Servlet？Servlet体系结构？**
 	* Servlet是用来处理客户端请求并产生动态网页内容的Java类。Servlet主要是用来处理或者是存储HTML表单提交的数据，产生动态内容，在无状态的HTTP协议下管理状态信息。
 	* 所有的Servlet都必须要实现的核心的接口是javax.servlet.Servlet。每一个Servlet都必须要直接或者是间接实现这个接口，或者是继承javax.servlet.GenericServlet或者javax.servlet.http.HTTPServlet。最后，Servlet使用多线程可以并行的为多个请求服务。
 	* Servlet类包含所需的三个必要的生命周期方法：init()初试化Servlet、service()相应Servlet请求、destroy()销毁Servlet，但直接继承需要重写所有方法，所以GenericServlet类继承了Servlet类并实现了所有方法，但它不是HTTP协议类，所以又由HttpServlet类继承GenericServlet类并是HTTP协议类。所以我们在建立Servlet类时只需继承HttpServlet类，重写我们需要的doGet()，doPost()请求即可，这两个方法对应客户端的get和post请求。
 	* https://blog.csdn.net/a236209186/article/details/51262646
-<div align=center>![Alt text](./1583170758681.png)
+![Alt text](./pic/servlet体系结构.png)
 
 48. **GenericServlet和HttpServlet有什么区别？**
 	* GenericServlet  是 Servlet 接口和 ServletConfig 接口的实现类. 但是一个抽象类. 其中的 service 方法为抽象方法
@@ -257,7 +263,7 @@ remove(Object Obj)删除，可以通过迭代器的remove()方法删除。
 ③调用Servlet实例对象的init()方法。
 ④创建一个用于封装HTTP请求消息的HttpServletRequest对象和一个代表HTTP响应消息的HttpServletResponse对象，然后调用Servlet的service()方法并将请求和响应对象作为参数传递进去。
 ⑤WEB应用程序被停止或重新启动之前，Servlet引擎将卸载Servlet，并在卸载之前调用Servlet的destroy()方法。
-<div align=center>![Alt text](./1583214985519.png)
+![Alt text](./pic/Servlet生命周期.png)
 
 50. **doGet()方法和doPost()方法有什么区别？**
 	* doGet：处理GET请求 doPost：处理POST请求。当发出客户端请求的时候，调用service方法并传递一个请求和响应对象。Servlet首先判断该请求是GET操作还是POST 操作。然后它调用下面的一个方法：doGet 或 doPost。如果请求是GET就调用doGet方法，如果请求是POST就调用doPost方法。doGet和doPost都接受请求(HttpServletRequest)和响应(HttpServletResponse)。
