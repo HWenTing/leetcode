@@ -340,8 +340,21 @@
 	* 开发者可以在组件层做逻辑上的改变，而不需要编辑单独使用了应用层逻辑的页面。
 
 
+####  JAVA面试问答
 
-
+1.  **StringBuilder、StringBuffer、String**
+	* 运行速度快慢为：StringBuilder > StringBuffer > String  
+	* 在线程安全上，StringBuilder是线程不安全的，而StringBuffer是线程安全的 原因如下：
+	@Override
+	public synchronized StringBuffer append(String str) {
+		toStringCache = null;
+		super.append(str);
+		return this;
+	}
+	* 适用场景
+		* String：少量的字符串操作的场景
+		* StringBuilder：单线程下在字符缓冲区进行大量操作的场景
+		* StringBuffer：多线程下在字符缓冲区进行大量操作的场景
 
 
 
