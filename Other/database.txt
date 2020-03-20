@@ -1,0 +1,25 @@
+
+关键字
+
+join 
+inner join 会取两者都有的部分  等同于join
+使用outer join时可以保证指定表的每条记录都出现----即使没有匹配, outer join又可以分为left join, right join, full join。
+LEFT JOIN返回左表的全部行和右表满足ON条件的行，如果左表的行在右表中没有匹配，那么这一行右表中对应数据用NULL代替。
+RIGHT JOIN返回右表的全部行和左表满足ON条件的行，如果右表的行在左表中没有匹配，那么这一行左表中对应数据用NULL代替。
+FULL JOIN 会从左表 和右表 那里返回所有的行。如果其中一个表的数据行在另一个表中没有匹配的行，那么对面的数据用NULL代替
+
+
+limit
+语法：  SQL语句  limit [offset,] rows
+一般是用于select语句中用以从结果集中拿出特定的一部分数据。offset是偏移量，表示我们现在需要的数据是跳过多少行数据之后的，可以忽略；rows表示我们现在要拿多少行数据。
+举例： select * from table limit 10000,100 表示从表table中拿数据，跳过10000行之后，拿100行
+
+
+
+
+T_175
+关于多表查询 考察了对Join的基本使用
+select FirstName, LastName, City, State
+from Person left join Address
+on Person.PersonId = Address.PersonId
+;
