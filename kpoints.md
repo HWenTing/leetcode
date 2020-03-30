@@ -343,15 +343,17 @@
 
 ####  JAVA面试问答
 
-1.  **StringBuilder、StringBuffer、String**
+0.  **StringBuilder、StringBuffer、String**
 	* 运行速度快慢为：StringBuilder > StringBuffer > String  
 	* 在线程安全上，StringBuilder是线程不安全的，而StringBuffer是线程安全的 原因如下：
-	@Override
-	public synchronized StringBuffer append(String str) {
-		toStringCache = null;
-		super.append(str);
-		return this;
-	}
+```
+@Override
+public synchronized StringBuffer append(String str) {
+	toStringCache = null;
+	super.append(str);
+	return this;
+}
+```
 	* 适用场景
 		* String：少量的字符串操作的场景
 		* StringBuilder：单线程下在字符缓冲区进行大量操作的场景
@@ -409,26 +411,99 @@ Java开发中会碰到声明为 native的方法，如：public native int hashCo
 CAS可以有效的提升并发的效率，但同时也会引入ABA问题。 如线程1从内存X中取出A，这时候另一个线程2也从内存X中取出A，并且线程2进行了一些操作将内存X中的值变成了B，然后线程2又将内存X中的数据变成A，这时候线程1进行CAS操作发现内存X中仍然是A，然后线程1操作成功。虽然线程1的CAS操作成功，但是整个过程就是有问题的。比如链表的头在变化了两次后恢复了原值，但是不代表链表就没有变化。
  所以JAVA中提供了AtomicStampedReference/AtomicMarkableReference来处理会发生ABA问题的场景，主要是在对象中额外再增加一个标记来标识对象是否有过变更。
 
+1. **transient**
+如果用transient声明一个实例变量，当对象存储时，它的值不需要维持。
+Java的serialization提供了一种持久化对象实例的机制。当持久化对象时，可能有一个特殊的对象数据 成员，我们不想用serialization机制来保存它。为了在一个特定对象的一个域上关闭serialization，可以在这个域前加上关键字 transient。当一个对象被序列化的时候，transient型变量的值不包括在序列化的表示中，然而非transient型的变量是被包括进去的
 
+1. **Java中HashSet的Value为什么存PRESENT而不是Null？**
+HashSet#add() 方法需要在加入新元素时返回 true，加入重复元素时返回 false
+HashMap#add() 方法返回的是上一次以同一 key 加入的 value，若从未以该 key 加入任何数据，则返回 null。然而 HashMap 允许 null 作为 value，所以如果使用 null 作为 value 利用 HashMap， 当返回 null 的时候我们就无法得知 null 究竟意味着这个 key 是第一次加入还是上一次使用了 null 作为 value 加入
+```
+public boolean add(E e) {
+      return map.put(e, PRESENT)==null;
+}
+```
 
+11. **单例模式**
+getInstance() 方法中需要使用同步锁 synchronized (Singleton.class) 防止多线程同时进入造成 instance 被多次实例化。
+```
+//懒汉模式
+public class Singleton {  
+    private static Singleton instance;  
+    private Singleton (){}  
 
+    public static Singleton getInstance() {  
+    if (instance == null) {  
+        instance = new Singleton();  
+    }  
+    return instance;  
+    }  
+}
+```
+```
+//饿汉模式
+public class Singleton {  
+    private static Singleton instance = new Singleton();  
+    private Singleton (){}  
+    public static Singleton getInstance() {  
+	    return instance;  
+    }  
+}
+```
 
+12. **双检锁/双重校验锁（DCL，即 double-checked locking）**
 
+```
+public class Singleton {  
+    private volatile static Singleton singleton;  
+    private Singleton (){}  
+    public static Singleton getSingleton() {  
+	    if (singleton == null) {  //if.1
+	        synchronized (Singleton.class)  
+		        if (singleton == null) //if.2
+		            singleton = new Singleton();
+	    }  
+	    return singleton;  
+    }  
+}
+```
+**存在的问题：**
+假设此时有两个线程 A 和 B 都需要获取 SingleInstance，并且 A 线程进入到 if.2 内，B 线程刚开始 if.1 的判断。也就是说，在 A 线程在执行初始化的过程中，B 线程读取了线程间共享变量（singleInstance）。这种情况下，B 线程很有可能读取到一个初始化并未完成的非空的引用（singleInstance 被部分构造，产生原因后面会有讨论）。
 
+比如 SingleInstance 对象中有一个字段 id:String，并且在构造函数中为该字段进行赋值。在上文描述的情况下就是：singleInstance 实例已经是一个非空的引用，new SingleInstance("110") 操作已经生效，但是并没有全部完成。singleInstance.getId() 返回的仍然是 null，而不是构造函数中传入的 ”110“。
+这种情况下，B 线程不会再创建重复的实例，但是会拿着一个无效的对象进行后续操作，可能会在程序中造成更严重的错误。
+**解决方法**
+在 Java 5.0 之后，使用 volatile 来修饰 singleInstance 实例，就不会产生指令重排序的情况，这样 DCL 也就可以正常工作了。但因为有了更加方便与安全的替代方式，DCL 也没有什么特别的优势，便被废弃了。
 
+13. **CMS收集器**
+CMS(Concurrent Mark Sweep)收集器是一种获取最短回收停顿时间（stop the world）为目标的收集器。基于"标记-清除"算法实现的收集器，整个过程分为四步：初始标记、并发标记、重新标记、并发清除。
+初始标记、重新标记着两个步骤任然需要"Stop The World"，初始标记仅仅只是标记一下GC Roots能直接关联到的对象，速度很快，并发标记就是进行GC Roots Tracing 的过程，而重新标记阶段则是为了修正并发标记期间因用户程序继续运行而导致标记产品变动的那一部分对象的标记记录。这个阶段的停顿时间一般会比初始标记阶段稍长一些，但远比并发标记的时间短。
+由于整个过程耗时最长的并发标记和并发清除都可以和用户线程一起工作，所以从总体上来说，CMS收集器的内存回收过程是与用户线程一起并发执行的。
+主要优点在于：**并发收集、低停顿。**
+**缺点：**
+CMS收集器对CPU非常敏感。在并发阶段，虽然不会导致用户线程停顿，但是会因为占用了一部分线程(或者说CPU资源)而导致应用程序变慢，总吞吐量降低。
+CMS收集器无法处理浮动垃圾。可能出现"Concurrent Mode Failure"失败而导致另一次Full GC。由于CMS并发清理阶段用户线程还在运行着，伴随着程序的运行自然就还会有新的垃圾不断产生，这一部分产生的垃圾，CMS无法在当次收集中处理掉他们，只要留待下一次GC再进行处理。这一部分产生的垃圾成为"浮动垃圾"。
+由于CMS采用"标记-清理"算法实现，所以当垃圾收集后，会产生大量的内存碎片。空间碎片过多，当程序运行需要分配大对象时，由于找不到连续的内存空间，而不得不提前触发一次Full GC.
+**什么时候使用CMS收集器**
+如果引用程序对停顿比较敏感，并在在应用程序运行时可以提供更大的内存和更多的CPU(硬件相当牛逼)，那么使用CMS收集器会给我们带来很多好处。还有就是如果JVM中，有相对较多存货时间较长的对象(老年代比较大)会更适合使用CMS
 
+1. **G1收集器**
+G1是一款面向服务端应用的垃圾收集器
+**特点**
+**并行于并发**：G1能充分利用CPU、多核环境下的硬件优势，使用多个CPU（CPU或者CPU核心）来缩短stop-The-World停顿时间。部分其他收集器原本需要停顿Java线程执行的GC动作，G1收集器仍然可以通过并发的方式让java程序继续执行。
+**分代收集：**虽然G1可以不需要其他收集器配合就能独立管理整个GC堆，但是还是保留了分代的概念。它能够采用不同的方式去处理新创建的对象和已经存活了一段时间，熬过多次GC的旧对象以获取更好的收集效果。
+**空间整合：**与CMS的“标记--清理”算法不同，G1从整体来看是基于“标记整理”算法实现的收集器；从局部上来看是基于“复制”算法实现的。
+**可预测的停顿：**这是G1相对于CMS的另一个大优势，降低停顿时间是G1和ＣＭＳ共同的关注点，但Ｇ１除了追求低停顿外，还能建立可预测的停顿时间模型，能让使用者明确指定在一个长度为M毫秒的时间片段内，
 
-
-
-
-
-
-
-
-
-
-
-
+1. **java 中 IO 流分为几种?**
+（1）按照流的流向分，可以分为输入流和输出流；
+（2）按照操作单元划分，可以划分为字节流和字符流；
+（3）按照流的角色划分为节点流和处理流。
+Java Io流共涉及40多个类，这些类看上去很杂乱，但实际上很有规则，而且彼此之间存在非常紧密的联系， Java I0流的40多个类都是从如下4个抽象类基类中派生出来的。
+（1）InputStream/Reader: 所有的输入流的基类，前者是字节输入流，后者是字符输入流。
+（2）OutputStream/Writer: 所有输出流的基类，前者是字节输出流，后者是字符输出流。
+按操作方式分类结构图：
+![Alt text](./pic/IOstream.png)
 
 
 
