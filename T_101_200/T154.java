@@ -9,6 +9,7 @@ public class T154 {
 
 // 	在T153的基础上增加了一点  当遇到重复元素的时候的处理方式	
 //	和 T33  T81也很像
+//	剑指offerT11
     public int findMin(int[] nums) {
         int right = nums.length-1;
         int left = 0;

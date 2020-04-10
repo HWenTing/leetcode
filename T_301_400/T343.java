@@ -29,7 +29,7 @@ public class T343 {
 //		}
 //		return dp[n-1];
 //	}
-	
+	//剑指offer14.1
 	public int integerBreak(int n) {//下标从1开始，较为清晰
 		if(n==0)
 			return 0;
