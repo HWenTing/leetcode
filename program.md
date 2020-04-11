@@ -60,6 +60,35 @@ leetcode题解
 
 * 换底公式 log<sub>a</sub>b = log<sub>c</sub>b/log<sub>c</sub>a
 
+* 快速幂
+    public double myPow(double x, int n) {//递归模式
+    	if(n==0) return 1;
+    	else if(n==1) return x;
+    	else if(n==-1) return 1/x;
+    	
+    	double d1 = myPow(x,n/2);
+    	double d2 = myPow(x,n%2);
+    	return d1*d1*d2;
+    }
+
+    public double myPow(double x, int N) {//循环模式
+    	if(N<0){//转化成n>0的情况
+    		x = 1/x;
+    		N = -N;
+    	}
+
+    	double ans = 1;
+    	double cur = x;
+    	while(N>0){
+    		if(N%2 ==1){
+    			ans *= cur;
+    		}
+    		cur *=cur;
+    		N/=2;
+    	}
+    	
+    	return ans;
+    }
 #### 关于链表的一些想法
 
 * 很适合递归或迭代来解决
