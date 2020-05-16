@@ -11,6 +11,7 @@ public class T155 {
 //	这样后加入的元素也不会影响到前边的元素
 	
 //	或者也可以单独拿出一个栈来存放最小值
+//	或者自己实现个链表，每个节点加一个额外属性：当前最小值。
 	Stack<Integer> stack = new Stack<>();
 	
     public void push(int x) {
