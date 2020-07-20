@@ -11,7 +11,7 @@ public class T84 {
 //	乍一看和存雨滴的题很像（虽然那个题我也忘了。。）
 //	不会啊。。。
 //	看的题解。。看了好久才大体明白。。。
-//	用栈的方法
+//	用栈的方法 单调栈
 	
     public int largestRectangleArea(int[] heights) {
         Stack<Integer> st = new Stack<>();

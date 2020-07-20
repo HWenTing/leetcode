@@ -44,8 +44,9 @@ public class T3 {
         		cnt[s.charAt(left)]--;
         		left++;
         	}
-        	right++;//右移
+        	right++;
         }
+        ans = Math.max(ans, right-left);
         return ans;
     }
     

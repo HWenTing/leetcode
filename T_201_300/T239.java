@@ -1,5 +1,7 @@
 package T_201_300;
 
+import java.util.LinkedList;
+
 public class T239 {
 
 //	给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
@@ -41,4 +43,31 @@ public class T239 {
     	return ans;
     }
     
+//	也可以维护单调递减队列
+//    public int[] maxSlidingWindow(int[] nums, int k) {
+//    	if(nums.length==0) return new int[0];
+//    	LinkedList<Integer> queue = new LinkedList<>();
+//    	queue.add(0);
+//    	int i=1;
+//    	for(;i<k;i++){
+//    		while(!queue.isEmpty() && nums[i]>nums[queue.getLast()])
+//    			queue.pollLast();
+//    		queue.add(i);
+//    	}
+//    	
+//    	int[] ret = new int[nums.length+1-k];
+//    	int j=0;
+//    	ret[j++] = nums[queue.peek()];
+//    	
+//    	for(;i<nums.length;i++){
+//    		if(queue.peek()+k==i)
+//    			queue.pollFirst();
+//    		while(!queue.isEmpty() && nums[i]>nums[queue.getLast()])
+//    			queue.pollLast();
+//    		queue.add(i);
+//    		ret[j++] = nums[queue.peek()];
+//    	}
+//    	return ret;
+//    	
+//    }
 }

@@ -29,7 +29,7 @@ public class T63 {
     		
     		for(int j=1;j<lencol;j++){
     			if(obstacleGrid[i][j]==0)
-    				dp[j]=(obstacleGrid[i][j-1]==0?dp[j-1]:0)+(obstacleGrid[i-1][j]==0?dp[j]:0);//状态转移公式
+    				dp[j]=(obstacleGrid[i][j-1]==0?dp[j-1]:0)+(obstacleGrid[i-1][j]==0?dp[j]:0);//状态转移公式 也可以直接写成 dp[j]+=(obstacleGrid[i][j-1]==0?dp[j-1]:0);
     			else
     				dp[j]=0;
     		}

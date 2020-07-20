@@ -31,9 +31,9 @@ public class T96 {
 		  int[] dp = new int[n+1];
 		  dp[0]=dp[1]=1;
 		  
-		  for(int i=2;i<=n;i++){
-			  for(int j=1;j<=i;j++){
-				  dp[i]+=(dp[j-1]+dp[i-j]);
+		  for(int i=2;i<=n;i++){//i表示n的值，即树所包含的节点数
+			  for(int j=1;j<=i;j++){//以j为根节点构造
+				  dp[i]+=(dp[j-1]*dp[i-j]);
 			  }
 		  }
 		  return dp[n];

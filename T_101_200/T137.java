@@ -7,6 +7,14 @@ public class T137 {
 //	位运算
 //	构造出来 满足  num op 0 =0; num op num op num=0 即可   即构造三进制
 	
+//	目的是构造变化规则
+	
+//	  one	 two
+//  00	 00 	+t--->
+//  t		 00 	+t--->
+//  00	 t 		+t--->
+//  00	 00 
+  
     public int singleNumber(int[] nums) {
         int one = 0;
         int two = 0;

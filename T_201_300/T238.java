@@ -27,27 +27,37 @@ public class T238 {
     
    
 //	1的空间复杂度。。。。竟然没怎么变
-    public int[] productExceptSelf(int[] nums) {
-    	int len =nums.length;
-    	int []ans = new int[len];
-    	ans[0]=1;
-        
-        int temp=1;//使用临时变量来代替数组
-        for(int i=1;i<len;i++){//before
-        	ans[i] = 1;
-        	temp*=nums[i-1];
-        	ans[i]*=temp;
-        }
-        
-        temp=1;
-        for(int i=len-2;i>=0;i--){//after
-        	temp*=nums[i+1];
-        	ans[i]*=temp;
-        }
-        
-        return ans;
-    }
+//    public int[] productExceptSelf(int[] nums) {
+//    	int len =nums.length;
+//    	int []ans = new int[len];
+//    	ans[0]=1;
+//        
+//        int temp=1;//使用临时变量来代替数组
+//        for(int i=1;i<len;i++){//before
+//        	ans[i] = 1;
+//        	temp*=nums[i-1];
+//        	ans[i]*=temp;
+//        }
+//        
+//        temp=1;
+//        for(int i=len-2;i>=0;i--){//after
+//        	temp*=nums[i+1];
+//        	ans[i]*=temp;
+//        }
+//        
+//        return ans;
+//    }
     
+    public int[] productExceptSelf(int[] nums) {
+
+        int n = nums.length;
+        int[] B = new int[n];
+        for (int i = 0, product = 1; i < n; product *= nums[i], i++)       /* 从左往右累乘 */
+            B[i] = product;
+        for (int i = n - 1, product = 1; i >= 0; product *= nums[i], i--)  /* 从右往左累乘 */
+            B[i] *= product;
+        return B;
+    }
     
 	public static void main(String[] args) {
 		T238 t =new T238();

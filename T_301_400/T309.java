@@ -9,28 +9,16 @@ public class T309 {
     	if(len<2)
     		return 0;
     	
-    	int []sell = new int[len];//截至到第i天最后一个操作是卖操作的最大收益
-    	int []buy = new int[len];//截至到第i天最后一个操作是买操作的最大收益
+    	int []sell = new int[len+1];//截至到第i天最后一个操作是卖操作的最大收益
+    	int []buy = new int[len+1];//截至到第i天最后一个操作是买操作的最大收益
     	
-    	buy[0] = -prices[0];//这个地方的初始化还是有点晕，仔细一想 buy[i-1]+prices[i]这个地方就进行了约束
-    	
-    	for(int i=1;i<len;i++){
-    		sell[i] = Math.max(sell[i-1], buy[i-1]+prices[i]);
-    		int temp=0;
-    		if(i>=2)
-    			temp = sell[i-2];
-    		buy[i] = Math.max(buy[i-1], temp-prices[i]);
+    	buy[1] = -prices[0];
+    	for(int i=2;i<=len;i++){
+    		sell[i] = Math.max(sell[i-1], buy[i-1]+prices[i-1]);//今天卖 要考虑昨天卖了 和前天买了今天卖
+    		buy[i] = Math.max(buy[i-1], sell[i-2]-prices[i-1]);
     	}
     	
-    	
-	    for(int i :sell)
-	    	System.out.print(i+" ");
-	    System.out.println();
-	    for(int i :buy)
-	    	System.out.print(i+" ");
-	    System.out.println();
-    	
-    	 return sell[len-1];
+    	 return sell[len];
     }
     
     

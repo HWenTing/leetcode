@@ -19,10 +19,28 @@ public class T139 {
         			dp[i+str.length()]=dp[i] || dp[i+str.length()];
         		}
         	}
-//        	this.printdp(dp);
         }
         return dp[len];	
     }
+//对上边的方法进行剪枝
+    public boolean wordBreak2(String s, List<String> wordDict) {
+        int len = s.length();
+        boolean []dp = new boolean[len+1];
+        
+        dp[0] = true;
+        for(int i=0;i<=len;i++){
+        	if(!dp[i]) continue;
+        	
+        	for(String str:wordDict){
+        		if(i+str.length()<=len && str.equals(s.substring(i, i+str.length()))){
+        			if(i+str.length()==len) return true;
+        			dp[i+str.length()]=true;
+        		}
+        	}
+        }
+        return dp[len];	
+    }
+    
     
 //  //输出dp矩阵
 //    private  void printdp(boolean []dp){
@@ -45,4 +63,5 @@ public class T139 {
 		System.out.println(t.wordBreak("catsandog", wordDict));
 	}
 
+    
 }

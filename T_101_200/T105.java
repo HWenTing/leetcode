@@ -63,28 +63,26 @@ public class T105 {
     
 //  下边是速度非常快的一种方法 尽量理解
 	  class Solution {
-	  	int [] preorder;
+		  int [] preorder;
 	      int [] inorder;
 	      int preindex=0;
 	      int inindex=0;
 	      public TreeNode buildTree(int[] preorder, int[] inorder) {
-	      	this.preorder = preorder;
-	      	this.inorder = inorder;
-	        
-	         	return help(Integer.MAX_VALUE);
-	
+	    	  this.preorder = preorder;
+	    	  this.inorder = inorder;
+	    	  return help(Integer.MAX_VALUE);
 	      }
-	
+	      
 	      TreeNode help(int stop){//stop大概表示当前子树在中序遍历中到达的最大位置
-		        if(preindex == preorder.length||inindex == inorder.length) return null;
-		        if(stop == inorder[inindex]){
-		            inindex++;
-		            return null;
-		        }
-		        TreeNode  root  = new TreeNode(preorder[preindex++]);
-		        root.left = help(root.val);//root是其左子树在中序遍历中到达的最大位置
-		        root.right = help(stop);//stop是该子树能够到达的最大位置，也是右子树到达的最大位置
-		        return root;
+				if(preindex == preorder.length||inindex == inorder.length) return null;
+				if(stop == inorder[inindex]){
+				    inindex++;
+				    return null;
+				}
+				TreeNode  root  = new TreeNode(preorder[preindex++]);
+				root.left = help(root.val);//root是其左子树在中序遍历中到达的最大位置
+				root.right = help(stop);//stop是该子树能够到达的最大位置，也是右子树到达的最大位置
+				return root;
 	      }
 	  }
   

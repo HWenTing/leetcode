@@ -276,6 +276,9 @@ leetcode题解
 
 * 判断是否为子串 s1.contains(s2) 
 
+* 大量数字转String  String.valueOf(nums) 比 nums+"" 好一些
+
+* 字符串的题目很多时候都是考察动态规划
 
 #### 关于数组与矩阵的一些想法
 
@@ -488,6 +491,10 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
         });
 
 * 一般重写equals方法时也也要重写hashcode方法，为了保证行为一致性。通过源码可以看出hashset等应用判断时既要判断hashcode也会判断equals。
+
+* 不定长list转二维array  (int[][])temp.toArray(new int[0][]);
+
+* 要注意Integer等的拆箱装箱问题，判断Integer是否相等用.intValue() 要不然大于127时会使用对象来比较
 #### 其他想法
 
 * 蒙特卡罗看运气法我也是服了。。。
@@ -510,7 +517,21 @@ Floyd-Warshall | O (n^3) | 非负圈  d_(ij)^(k) = min{d_(ij)^(k-1),d_(ik)^(k-1)
 
 * 求数据流中的中位数，维护两个堆（左边最大堆，右边最小堆），保持两个堆的大小一样，最后的结果就是两个堆顶元素平均值（或一个堆的堆顶元素） 
 
-* 约瑟夫环 (dfs(n-1,m)+n)%m 
+* 约瑟夫环 (dfs(n-1,m)+m)%n  https://blog.csdn.net/u011500062/article/details/72855826
+	//递归
+    public int lastRemaining(int n, int m) {
+    	if(n==1) return 0;
+    	return (lastRemaining(n-1,m)+m)%n ;
+    }
+	//非递归
+	public int lastRemaining(int n, int m) {
+        int ans = 0;
+        // 最后一轮剩下2个人，所以从2开始反推
+        for (int i = 2; i <= n; i++) {
+            ans = (ans + m) % i;
+        }
+        return ans;
+    }
 
 * 现代操作系统很少使用堆排序，因为无法利用局部性原理进行缓存，也就是数组元素很少和相邻的元素进行比较和交换
 
