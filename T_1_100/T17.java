@@ -5,6 +5,9 @@ import java.util.List;
 
 public class T17 {
 
+//	给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。
+//	给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
+	
 //    public static List<String> letterCombinations(String digits) {
 //    	if(digits.length() == 0) return new ArrayList<String>();
 //		  char[][] numChar = new char[][]{
@@ -39,7 +42,7 @@ public class T17 {
 //		  }
 //	  }
 	  
-	private static final String[] KEYS = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+	private final String[] KEYS = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
     public List<String> letterCombinations(String digits) {
         List<String> res = new ArrayList<>();
         if(digits==null ||digits.length()==0)
@@ -60,8 +63,6 @@ public class T17 {
     		doCombination(prefix,res,digits);
     		prefix.deleteCharAt(prefix.length()-1);
     	}
-    		
-    	
     }
     
     public static void main(String []args){

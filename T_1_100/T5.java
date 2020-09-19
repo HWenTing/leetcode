@@ -2,7 +2,7 @@ package T_1_100;
 
 
 public class T5 {
-
+//	寻找最长回文子串
 	//暴力破解
 //	public static String longestPalindrome(String s) {
 //		int len = s.length();

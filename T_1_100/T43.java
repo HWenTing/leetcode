@@ -30,7 +30,7 @@ public class T43 {
         int[] ans = new int[len];
         
         
-        for(int i=num1.length()-1;i>=0;i--){
+        for(int i=num1.length()-1;i>=0;i--){//从右向左算
         	for(int j=num2.length()-1;j>=0;j--){
         		int cur = (num1.charAt(i)-'0')*(num2.charAt(j)-'0');
         		cur+=ans[i+j+1];//考虑进位

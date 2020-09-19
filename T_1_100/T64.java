@@ -2,6 +2,10 @@ package T_1_100;
 
 public class T64 {
 
+	
+//	给定一个包含非负整数的 m x n 网格，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。
+//	说明：每次只能向下或者向右移动一步。
+	
 //	单趋向的运动方向 适合动态规划
     public int minPathSum(int[][] grid) {
     	int numh = grid.length;

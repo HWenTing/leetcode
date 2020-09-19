@@ -4,8 +4,10 @@ import java.util.*;
 
 public class T39 {
 
+//	给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
+//	candidates 中的数字可以无限制重复被选取。
 	
-	 public static  List<List<Integer>> combinationSum(int[] candidates, int target) {
+	 public List<List<Integer>> combinationSum(int[] candidates, int target) {
 	        List<List<Integer>> listAll=new ArrayList<List<Integer>>();
 	        List<Integer> list=new ArrayList<Integer>();
 	        //排序
@@ -13,7 +15,7 @@ public class T39 {
 	        find(listAll,list,candidates,target,0);
 	        return listAll;
 	    }
-    public static void find(List<List<Integer>> listAll,List<Integer> tmp,int[] candidates, int target,int num){
+    public void find(List<List<Integer>> listAll,List<Integer> tmp,int[] candidates, int target,int num){
         //递归的终点
         if(target==0){
             listAll.add(tmp);
@@ -28,11 +30,4 @@ public class T39 {
             find(listAll,list,candidates,target-candidates[i],i);
         }   
     } 
-    
-    
-    public static void main(String[] args){
-    	int[] candidates = {10,1,2,7,6,1,5};
-    	int target = 8;
-    	System.out.println(combinationSum(candidates,target));
-    }
 }

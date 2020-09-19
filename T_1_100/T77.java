@@ -1,38 +1,27 @@
 package T_1_100;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 public class T77 {
 	
+//	给定两个整数 n 和 k，返回 1 ... n 中所有可能的 k 个数的组合。
+
+	private List<List<Integer>> ans;
     public List<List<Integer>> combine(int n, int k) {
-        int[]  nums = new int[n];
-        List<List<Integer>> res = new ArrayList<>();
-        boolean[] visit = new boolean[n];
-        for(int i=0;i<n;i++)
-        	nums[i] = i+1;
-        getItem(0,k,nums,visit,res,new ArrayList<>());
-        return res;
+    	ans = new LinkedList<>();
+    	item(n,k,0,new LinkedList<Integer>());
+    	return ans;
     }
     
-    private void getItem(int cur,int k, int[] nums,boolean[] visit,List<List<Integer>> res,List<Integer> temp){
-    	if(temp.size()==k){
-    		res.add(new ArrayList<>(temp));
+    private void item(int n, int k,int start, List<Integer> cur){
+    	if(k==0){
+    		ans.add(new LinkedList<>(cur));
     		return;
     	}
-    	for(int i=cur;i<nums.length;i++){
-    		if(!visit[i]){
-    			visit[i] = true;
-    			temp.add(nums[i]);
-    			getItem(i,k,nums,visit,res,temp);
-    			temp.remove(temp.size()-1);
-    			visit[i] = false;
-    		}
+    	
+    	for(int i=start+1;i+k-1<=n;i++){
+    		cur.add(i);
+    		item(n,k-1,i,cur);
+    		cur.remove(cur.size()-1);
     	}
     }
-    
-	public static void main(String[] args) {
-		T77 t =new T77();
-		System.out.println(t.combine(4, 2));
-
-	}
-
 }

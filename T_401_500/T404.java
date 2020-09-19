@@ -3,8 +3,7 @@ package T_401_500;
 public class T404 {
 
 //	左叶子之和
-	
-	private int sum=0;
+//	计算给定二叉树的所有左叶子之和。
     public int sumOfLeftLeaves(TreeNode root) {
     	if(root==null)
     		return 0;

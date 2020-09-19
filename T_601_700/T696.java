@@ -31,8 +31,8 @@ public class T696 {
 //	击败70%
     public int countBinarySubstrings(String s) {
         
-    	int pre=0;
-    	int change=0;
+    	int pre=0;//上上个转折点
+    	int change=0;//上一个转折点
     	int ans=0;
     	char curval = s.charAt(0);
     	for(int i=0;i<s.length();i++){

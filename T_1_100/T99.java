@@ -28,15 +28,10 @@ public class T99 {
     	while(r!=null){
     		if(r.left==null){//步骤2
     			if(pre!=null && pre.val>r.val){
-    				if(n1==null){
-    					n1 = pre;
-    					n2 = r;
-    				}else{
-    					n2 = r;
-    				}
+    				n1 = n1==null?pre:n1;
+    				n2 = r;
     			}
     			pre = r;
-    			
     			r = r.right;
     			continue;
     		}
@@ -45,12 +40,8 @@ public class T99 {
     		if(front.right==r){//步骤3
     			front.right=null;
     			if(pre.val>r.val){
-    				if(n1==null){
-    					n1 = pre;
-    					n2 = r;
-    				}else{
-    					n2 = r;
-    				}
+    				n1 = n1==null?pre:n1;
+    				n2 = r;
     			}
     			pre = r;
     			r=r.right;
