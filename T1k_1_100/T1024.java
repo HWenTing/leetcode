@@ -8,7 +8,6 @@ public class T1024 {
 //	dp[i] 表示[0,i]范围内片段所需要的片段个数
 //	先按照clip[1]排序  
 //	dp[i] = Math.min(dp[i], dp[clip[0]]+1);
-	
     public int videoStitching(int[][] clips, int T) {
     	Arrays.sort(clips,new Comparator<int[]>(){
 			@Override
@@ -41,5 +40,58 @@ public class T1024 {
     }
     
     
+//    或者分段来计算，每从0开始，计算出每个阶段能到到的最远距离，然后计算出下个阶段能到达的最远距离
+//    public int videoStitching(int[][] clips, int T) {
+//        if(T==0) return 0;
+//        Arrays.sort(clips,new Comparator<int[]>(){
+//			@Override
+//			public int compare(int[] o1, int[] o2) {
+//				if(o1[0]==o2[0])
+//					return o1[1]-o2[1];
+//				return o1[0]-o2[0];
+//			}
+//    	});
+//
+//        int max=0;int left = 0;
+//        int ans = 1;
+//
+//        for(int i=0;i<clips.length;i++){
+//            if(clips[i][0]>max) return -1;
+//
+//            while(i<clips.length && clips[i][0]<=left){
+//                max = Math.max(max,clips[i][1]);
+//                i++;
+//            }
+//
+//            if(max >=T) return ans;
+//            left = max;
+//            ans++;
+//            i--;
+//        }
+//        return max>=T?ans:-1;
+//    }
+    
+//    更进一步 不需要排序 也是贪心
+//    public int videoStitching(int[][] clips, int T) {
+//        int[] maxn = new int[T];
+//        int last = 0, ret = 0, pre = 0;
+//        for (int[] clip : clips) {
+//            if (clip[0] < T) {
+//                maxn[clip[0]] = Math.max(maxn[clip[0]], clip[1]);
+//            }
+//        }
+//        for (int i = 0; i < T; i++) {
+//            last = Math.max(last, maxn[i]);
+//            if (i == last) {
+//                return -1;
+//            }
+//            if (i == pre) {
+//                ret++;
+//                pre = last;
+//            }
+//        }
+//        return ret;
+//    }
+
     
 }

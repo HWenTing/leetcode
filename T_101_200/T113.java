@@ -16,36 +16,37 @@ public class T113 {
     	sub(root,sum,new LinkedList<>());
     	return ans;
     }
-    
-    private void sub(TreeNode root, int sum,LinkedList<Integer> temp){
-		if(isleaf(root) && sum==root.val){//到达叶子节点并且值相等
-			temp.add(root.val);
-			ans.add(temp);
-			return;
-		}
-    	temp.add(root.val);
-    	if(root.right!=null) sub(root.right,sum-root.val,new LinkedList<>(temp));//深度复制
-    	if(root.left!=null) sub(root.left,sum-root.val,new LinkedList<>(temp));//因为每次都复制一遍，会慢很多
-    	temp.removeLast();
-    }
-    
-//    改成只在加入ans时复制一遍（new LinkedList<>(temp)）会快一些，击败60%
+//    
 //    private void sub(TreeNode root, int sum,LinkedList<Integer> temp){
 //		if(isleaf(root) && sum==root.val){//到达叶子节点并且值相等
 //			temp.add(root.val);
-//			ans.add(new LinkedList<>(temp));
-//            temp.removeLast();
+//			ans.add(temp);
 //			return;
 //		}
 //    	temp.add(root.val);
-//    	if(root.right!=null) 
-//            sub(root.right,sum-root.val,temp);
-//        
-//    	if(root.left!=null)
-//            sub(root.left,sum-root.val,temp);
-//         temp.removeLast();
+//    	if(root.right!=null) sub(root.right,sum-root.val,new LinkedList<>(temp));//深度复制
+//    	if(root.left!=null) sub(root.left,sum-root.val,new LinkedList<>(temp));//因为每次都复制一遍，会慢很多
+//    	temp.removeLast();
 //    }
     
+//    改成只在加入ans时复制一遍（new LinkedList<>(temp)）会快一些，击败60%
+    private void sub(TreeNode root, int sum,LinkedList<Integer> temp){
+		if(isleaf(root) && sum==root.val){//到达叶子节点并且值相等
+			temp.add(root.val);
+			ans.add(new LinkedList<>(temp));
+            temp.removeLast();
+			return;
+		}
+    	temp.add(root.val);
+    	if(root.right!=null) 
+            sub(root.right,sum-root.val,temp);
+        
+    	if(root.left!=null)
+            sub(root.left,sum-root.val,temp);
+         temp.removeLast();
+    }
+    
+	
     private boolean isleaf(TreeNode root){//判断是否是叶子节点
     	return root.left==null && root.right==null;
     }

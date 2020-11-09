@@ -13,7 +13,7 @@ public class T75 {
         for(int i=0;i<right12;i++){
         	if(nums[i]==0){
         		left01++;
-        		nums[i]=nums[left01];
+        		nums[i]=nums[left01];//这里也可以直接写成nums[i]=1;最好不这样写
         		nums[left01]=0;
         	}
         	else if(nums[i]==2){
@@ -23,7 +23,6 @@ public class T75 {
         		i--;
         	}
         }
-        return ;
     }
     
 }
