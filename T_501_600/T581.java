@@ -51,6 +51,39 @@ public class T581 {
         return hi-lo-1;
     }
 	 
+//	找到左右两个端点
+//    public int findUnsortedSubarray(int[] nums) {
+//        int len = nums.length;
+//        if(len<=1) return 0;
+//        int[] leftmax = new int[len];
+//        int[] rightmin = new int[len];
+//
+//        leftmax[0] = nums[0];
+//        for(int i=1;i<len;i++)
+//            leftmax[i] = Math.max(leftmax[i-1],nums[i]);
+//        // if(leftmax[len-1]==nums[len-1]) return 0;
+//
+//        rightmin[len-1] = nums[len-1];
+//        for(int i=len-2;i>=0;i--)
+//            rightmin[i] = Math.min(rightmin[i+1],nums[i]);
+//
+//        int left = 0;
+//        while(left<len){
+//            if(leftmax[left]>rightmin[left])
+//                break;
+//            left++;
+//        }
+//        if(left==len) return 0;
+//        
+//        int right = len-1;
+//        while(right>=0){
+//            if(leftmax[right]>rightmin[right])
+//                break;
+//            right--;
+//        }
+//        return right-left+1;
+//        
+//    }
 	 
 //	dp
 //	max[i]表示前i个最大的元素....不对，做不出来

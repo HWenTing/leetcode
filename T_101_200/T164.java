@@ -15,6 +15,10 @@ public class T164 {
 //	如果出现一个空桶，那么该桶左边的最大值和右边的最小值之差一定大于等于interval，而同一个桶之内的差值最大是interval-1，因此只要多分出来一个桶即可
 //	综合鸽巢原理，interval = (int) Math.ceil((max-min)/(double)len);
 	
+//	上边的理解似乎有点错误，相邻数字的最大间距不会小于 interval  所以肯定会分布在两个桶中，即只需要维护每个桶里的最大值和最小值
+
+
+	
 	
     public int maximumGap(int[] nums) {
     	int len = nums.length;

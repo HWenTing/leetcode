@@ -2,78 +2,56 @@ package T_1_100;
 
 public class T34 {
 
-	public static int findleft(int[] nums,int start,int end,int target){
-		if(end - start <2){
-			for(int i =start;i<=end;i++){
-				if(nums[i] == target){
-					return i;
-				}
-			}
-			return -1;
-		}
-		int mid = (start+end)/2;
-		if(nums[mid] == target){
-			if(mid==0 || nums[mid-1]!=target){
-				return mid;
-			}else{
-				return findleft(nums,start,mid,target);
-			}
-				
-		}else if(nums[mid] > target){
-			return findleft(nums,start,mid,target);
-		}else{
-			return findleft(nums,mid,end,target);
-		}
+	
+//	给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。
+//	如果数组中不存在目标值 target，返回 [-1, -1]。
+	
+//	log 二分
+	class Solution {
+	    public int[] searchRange(int[] nums, int target) {
+	        int[] ans = new int[2];
+	        if(nums.length<1) return new int[]{-1,-1};
+	        ans[0] = searchLeft(nums,target,0,nums.length-1);
+	        ans[1] = searchRight(nums,target,0,nums.length-1);
+	        return ans;
+	    }
+
+	    private int searchLeft(int[] nums, int target,int start,int end ){
+	        if(end-start<0)
+	            return -1;
+	        else if(end == start)
+	            return nums[end]==target?end:-1;
+	        
+	        int mid = (end-start)/2+start;
+	        if(nums[mid]==target){
+	            if(mid==start || nums[mid-1]!=target)
+	                return mid;
+	            else
+	                return searchLeft(nums,target,start,mid-1);
+	        }else if(nums[mid]>target)
+	            return searchLeft(nums,target,start,mid-1);
+	        else
+	            return searchLeft(nums,target,mid+1,end);
+	    }
+
+	    private int searchRight(int[] nums, int target,int start,int end){
+	        if(end-start<0)
+	            return -1;
+	        else if(end == start)
+	            return nums[end]==target?end:-1;
+
+	        int mid = (end-start)/2+start;
+	        if(nums[mid]==target){
+	            if(mid==end || nums[mid+1]!=target)
+	                return mid;
+	            else
+	                return searchRight(nums,target,mid+1,end);
+	        }else if(nums[mid]>target)
+	            return searchRight(nums,target,start,mid-1);
+	        else
+	            return searchRight(nums,target,mid+1,end);
+	    }
+
 	}
-	
-	public static int findright(int[] nums,int start,int end,int target){
-		if(end - start <2){
-			for(int i =end;i>=start;i--){
-				if(nums[i] == target){
-					return i;
-				}
-			}
-			return -1;
-		}
-		
-		int mid = (start+end)/2;
-		if(nums[mid] == target){
-			if(mid==nums.length-1 || nums[mid+1]!=target){
-				return mid;
-			}else{
-				return findright(nums,mid,end,target);
-			}
-				
-		}else if(nums[mid] > target){
-			return findright(nums,start,mid,target);
-		}else{
-			return findright(nums,mid,end,target);
-		}
-	}
-	
-	
-    public static int[] searchRange(int[] nums, int target) {
-        int[] ans=new int[2];
-        int len = nums.length;
-        
-        if(len==0){
-        	ans[0]=ans[1]=-1;
-        	return ans;
-        }
-        
-        ans[0] = findleft(nums,0,len-1,target);
-        ans[1] = findright(nums,0,len-1,target);
-        return ans;
-    }
-    
-    public static void main(String[] args){
-    	int[]  aa = {1};
-    	
-//    	System.out.println(findleft(aa,0,6,8));
-//    	System.out.println(findright(aa,0,6,10));
-    	int[] ans = searchRange(aa,1);
-    	System.out.println(ans[0]+" "+ans[1]);
-    	
-    }
     
 }
