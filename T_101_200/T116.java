@@ -54,7 +54,7 @@ public class T116 {
 		if (root.next != null) {
 			root.right.next = root.next.left;// 右孩子连接到兄弟的左孩子
 		}
-		connect(root.left);
+		connect( root.left);
 		connect(root.right);
 		return root;
 	}
